@@ -17,6 +17,5 @@ export default {
     font-size: 60px;
     font-family: Georgia;
     color: blue;
-
   }
 </style>
