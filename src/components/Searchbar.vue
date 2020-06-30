@@ -15,11 +15,17 @@ export default {
 </script>
 
 <style scoped>
+
     h1 input[type=text] {
-    float: right;
-    padding: 6px;
-    border: none;
-    text-align: left;
-    font-size: 17px;
-}
+        float: right;
+        padding: 6px;
+        border: none;
+        position:absolute;
+        right: 3%;
+        top:10%;
+        text-align: left;
+        font-size: 17px;
+    }
+
+    
 </style>
