@@ -1,19 +1,18 @@
 <template>
+<body>
   <div id="app">
-    <Title/>
-    <Searchbar/>
+    <Navbar/>
   </div>
+</body>
 </template>
 
 <script>
-import Title from './components/Title'
-import Searchbar from './components/Searchbar'
+import Navbar from './components/Navbar'
 
 export default {
   name: 'app',
   components: {
-    Title,
-    Searchbar
+    Navbar
   }, 
   data() {
   }
@@ -21,5 +20,8 @@ export default {
 </script>
 
 <style>
+  body {
+    margin: 0px;
+  }
 
 </style>
