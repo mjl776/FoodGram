@@ -1,5 +1,6 @@
 <template>
 <body>
+  <img alt="FoodGram Logo" class = "logo" src="./assets/FoodGram.png">
   <div id="app">
     <Navbar/>
   </div>
@@ -20,8 +21,14 @@ export default {
 </script>
 
 <style>
+
+
   body {
     margin: 0px;
+  }
+  
+  .logo {
+
   }
 
 </style>

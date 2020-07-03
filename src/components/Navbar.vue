@@ -1,9 +1,11 @@
 <template>
-        <div class = nav>
-            <a href= "#foodgram" class = "logo"> FoodGram </a>
-            <input type="text" placeholder="Search.."> 
-            <a href= "#what's good"> What's Good </a>
-        </div>
+    <div class = nav>
+        <ul>
+            <li> <a href = "#whatshot"> What's hot </a> </li>
+            <li> <a href = "#Resteraunts"> Resteraunts </a> </li>
+            <li> <a href = "#Accounts"> Account </a> </li>
+        </ul>
+    </div>
 </template>
 
 <script>
@@ -21,13 +23,7 @@ export default {
         height: 100px;
         margin-bottom: 15px;
     }
-    
-    .nav a.logo {
-        font-size: 30px;
-        text-align: center;
-        display: block;
-        color: #4B0082;
-    }
+
 
     .nav input[type=text] {
         float: right;
