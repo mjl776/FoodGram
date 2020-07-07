@@ -1,19 +1,21 @@
 <template>
-  <div id="app">
-    <Title/>
-    <Searchbar/>
-  </div>
+<body>
+  <header>
+    <img alt="FoodGram Logo" class = "logo" src="./assets/FoodGram.png">
+    <div id="app">
+        <Navbar/>
+    </div>
+  </header>
+</body>
 </template>
 
 <script>
-import Title from './components/Title'
-import Searchbar from './components/Searchbar'
+import Navbar from './components/Navbar'
 
 export default {
   name: 'app',
   components: {
-    Title,
-    Searchbar
+    Navbar
   }, 
   data() {
   }
@@ -21,5 +23,41 @@ export default {
 </script>
 
 <style>
+
+
+  body {
+    margin: 0px;
+  }
+  
+  .logo {
+    float: left;
+  }
+
+  header {
+      background: linear-gradient(-90deg,#FA8072,#00FFFF);
+  }
+
+  header::after {
+      content: '';
+      display: table;
+      clear: both;
+  }
+
+  nav li {
+    display: inline-block;
+    margin-left: 70px;
+    padding-top: 25px;
+
+
+    position: relative;
+}
+
+nav a {
+    color:green;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+
 
 </style>
