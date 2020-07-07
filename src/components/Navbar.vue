@@ -13,7 +13,7 @@
 <script>
 
 export default {
-    name: 'Searchbar'
+    name: 'Navbar'
 }
 
 </script>
@@ -23,7 +23,7 @@ export default {
     nav {
         float: right;
     }
-    
+
     .container {
         width: 80%;
         margin: 0 auto;
