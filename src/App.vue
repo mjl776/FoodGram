@@ -1,9 +1,11 @@
 <template>
 <body>
-  <img alt="FoodGram Logo" class = "logo" src="./assets/FoodGram.png">
-  <div id="app">
-    <Navbar/>
-  </div>
+  <header>
+    <img alt="FoodGram Logo" class = "logo" src="./assets/FoodGram.png">
+    <div id="app">
+        <Navbar/>
+    </div>
+  </header>
 </body>
 </template>
 
@@ -28,7 +30,34 @@ export default {
   }
   
   .logo {
-
+    float: left;
   }
+
+  header {
+      background: linear-gradient(-90deg,#FA8072,#00FFFF);
+  }
+
+  header::after {
+      content: '';
+      display: table;
+      clear: both;
+  }
+
+  nav li {
+    display: inline-block;
+    margin-left: 70px;
+    padding-top: 25px;
+
+
+    position: relative;
+}
+
+nav a {
+    color:green;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+
 
 </style>

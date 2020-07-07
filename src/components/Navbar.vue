@@ -1,10 +1,12 @@
 <template>
-    <div class = nav>
+    <div class = "container">
+        <nav>
         <ul>
             <li> <a href = "#whatshot"> What's hot </a> </li>
             <li> <a href = "#Resteraunts"> Resteraunts </a> </li>
             <li> <a href = "#Accounts"> Account </a> </li>
         </ul>
+        </nav>
     </div>
 </template>
 
@@ -18,20 +20,28 @@ export default {
 
 <style scoped>
 
-    .nav {
-        background: linear-gradient(-90deg,#FA8072,#00FFFF);
-        height: 100px;
-        margin-bottom: 15px;
+    nav {
+        float: right;
+    }
+    
+    .container {
+        width: 80%;
+        margin: 0 auto;
     }
 
-
-    .nav input[type=text] {
+    nav input[type=text] {
         float: right;
         padding: 4px;
         border: none;
         margin-top: 8px;
         margin-right: 16px;
         font-size: 17px;
+    }
+
+    nav ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
     }
 
 </style>
