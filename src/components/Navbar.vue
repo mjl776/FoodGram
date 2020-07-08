@@ -25,7 +25,7 @@ export default {
         float: right;
         font-family: Georgia;
     }
-    
+
     .container {
         width: 80%;
         margin: 0 auto;
