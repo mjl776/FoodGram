@@ -33,7 +33,7 @@ export default {
 
     nav input[type=text] {
         float: left;
-        padding: 4px;
+        padding: 8px;
         border: none;
         margin-top: 17px;
         margin-right: 16px;
