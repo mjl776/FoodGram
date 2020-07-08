@@ -5,6 +5,7 @@
             <li> <a href = "#whatshot"> What's hot </a> </li>
             <li> <a href = "#Resteraunts"> Resteraunts </a> </li>
             <li> <a href = "#Accounts"> Account </a> </li>
+            <input type="text" placeholder="Search..">
         </ul>
         </nav>
     </div>
@@ -30,10 +31,10 @@ export default {
     }
 
     nav input[type=text] {
-        float: right;
+        float: left;
         padding: 4px;
         border: none;
-        margin-top: 8px;
+        margin-top: 17px;
         margin-right: 16px;
         font-size: 17px;
     }
