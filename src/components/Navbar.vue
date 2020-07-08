@@ -14,7 +14,7 @@
 <script>
 
 export default {
-    name: 'Searchbar'
+    name: 'Navbar'
 }
 
 </script>
@@ -23,7 +23,7 @@ export default {
 
     nav {
         float: right;
-        font-family: Arial;
+        font-family: Georgia;
     }
     
     .container {
@@ -33,7 +33,7 @@ export default {
 
     nav input[type=text] {
         float: left;
-        padding: 4px;
+        padding: 8px;
         border: none;
         margin-top: 17px;
         margin-right: 16px;
