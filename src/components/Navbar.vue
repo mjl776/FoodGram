@@ -23,6 +23,7 @@ export default {
 
     nav {
         float: right;
+        font-family: Arial;
     }
 
     .container {
