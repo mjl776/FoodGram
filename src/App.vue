@@ -4,6 +4,7 @@
     <img alt="FoodGram Logo" class = "logo" src="./assets/FoodGram.png">
     <div id="app">
         <Navbar/>
+        <FoodPages/>
     </div>
   </header>
 </body>
@@ -11,11 +12,12 @@
 
 <script>
 import Navbar from './components/Navbar'
-
+import FoodPages from './components/FoodPages'
 export default {
   name: 'app',
   components: {
-    Navbar
+    Navbar,
+    FoodPages
   }, 
   data() {
     
