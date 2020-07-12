@@ -1,6 +1,6 @@
 <template>
     <div class="food-page">
-        <div class="restaurant">
+        <div class="restaurant-name">
             {{ account.restaurant }}
         </div>
 
@@ -8,6 +8,8 @@
             :food = "account.Food"
             :location = "account.Location"
          />
+        <img class = "food-photo" src = "./photos/pizza.png"/>
+
     </div>
 </template>
 
@@ -25,7 +27,7 @@ export default {
             account: {
                 restaurant: 'Eataly',
                 Food: 'Pizza',
-                Location: 'World Trade Center'
+                Location: 'World Trade Center',
             },
         }
     }
@@ -34,7 +36,15 @@ export default {
 
 <style scoped>
     .food-page {
+        display: inline-block;
+        margin-left: 30px;
+        padding-top: 25px;
+    }
+    
+    .food-photo {
         
     }
+
+
     
 </style>

@@ -1,12 +1,14 @@
 <template>
 <body>
-  <header>
-    <img alt="FoodGram Logo" class = "logo" src="./assets/FoodGram.png">
+    <img alt="FoodGram Logo" class = "logo" src="./assets/FoodGram.png"/>
     <div id="app">
+    <header>
         <Navbar/>
+    </header>
         <FoodPages/>
     </div>
-  </header>
+  
+
 </body>
 </template>
 
@@ -26,7 +28,6 @@ export default {
 </script>
 
 <style>
-
 
   body {
     margin: 0px;
@@ -60,7 +61,5 @@ nav a {
     text-decoration: none;
     text-transform: uppercase;
 }
-
-
 
 </style>
