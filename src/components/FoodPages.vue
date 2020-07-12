@@ -8,8 +8,8 @@
             :food = "account.Food"
             :location = "account.Location"
          />
-        <img class = "food-photo" src = "./photos/pizza.png"/>
 
+        <img alt = "margerita pizza" giclass = "food-photo" src = "./photos/pizza.png"/>
     </div>
 </template>
 
