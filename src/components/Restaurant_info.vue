@@ -11,7 +11,7 @@
 
 <script>
 export default {
-    name: 'Photos',
+    name: 'Restaurant_info',
     props: ['food', 'location'],
 };
 </script>
