@@ -4,18 +4,22 @@
             {{ account.restaurant }}
         </div>
 
+        <div class = photo>
+            <img src = "account.Photo"> 
+        </div>
+
         <Photos 
             :food = "account.Food"
             :location = "account.Location"
          />
 
-        <img alt = "margerita pizza" giclass = "food-photo" src = "./photos/pizza.png"/>
+
     </div>
 </template>
 
 <script>
 
-import Photos from './Photos.vue'
+import Photos from './Restaurant_info.vue'
 
 export default {
     name: 'FoodPages',
@@ -28,6 +32,7 @@ export default {
                 restaurant: 'Eataly',
                 Food: 'Pizza',
                 Location: 'World Trade Center',
+                Photo: "./photos/pizza.png",
             },
         }
     }
@@ -40,11 +45,5 @@ export default {
         margin-left: 30px;
         padding-top: 25px;
     }
-    
-    .food-photo {
-        
-    }
-
-
-    
+  
 </style>

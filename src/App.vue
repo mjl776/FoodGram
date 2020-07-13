@@ -5,6 +5,7 @@
     <header>
         <Navbar/>
     </header>
+    
         <FoodPages/>
     </div>
   
