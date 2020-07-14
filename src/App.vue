@@ -2,11 +2,10 @@
 <body>
     <img alt="FoodGram Logo" class = "logo" src="./assets/FoodGram.png"/>
     <div id="app">
-    <header>
-        <Navbar/>
-    </header>
-    
-        <FoodPages/>
+      <header>
+          <Navbar/>
+      </header>
+    <FoodPages/>
     </div>
   
 

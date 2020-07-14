@@ -4,27 +4,26 @@
             {{ account.restaurant }}
         </div>
 
-        <div class = photo>
-            <img src = "account.Photo"> 
+        <div class = "photo">
+            <img src = "./photos/pizza.png"/> 
         </div>
 
-        <Photos 
+        <Restaurantinfo 
             :food = "account.Food"
             :location = "account.Location"
          />
-
 
     </div>
 </template>
 
 <script>
 
-import Photos from './Restaurant_info.vue'
+import Restaurantinfo from './Restaurant_info.vue'
 
 export default {
     name: 'FoodPages',
     components: {
-        Photos,
+        Restaurantinfo,
     },
     data () {
         return {
@@ -43,7 +42,14 @@ export default {
     .food-page {
         display: inline-block;
         margin-left: 30px;
-        padding-top: 25px;
+        margin-top: 10px;
+        padding-top: 15px;
+        padding: 15px;
+        border: solid black 1px;
+    }
+    .photo {
+        padding: 5px;
+        margin-left: -4px;
     }
   
 </style>
