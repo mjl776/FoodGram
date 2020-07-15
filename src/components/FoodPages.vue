@@ -1,5 +1,6 @@
 <template>
-    <div class="food-page">
+    <div class="container">
+        <div class = "food-page">
         <div class="restaurant-name">
             {{ account.restaurant }}
         </div>
@@ -12,19 +13,25 @@
             :food = "account.Food"
             :location = "account.Location"
          />
-
+        </div>
+        <div class = "comment-section"> 
+            <Comments/>
+        </div>
     </div>
-    
 </template>
 
 <script>
 
 import Restaurantinfo from './Restaurant_info.vue'
-
+import Comments from './Comments.vue'
 export default {
     name: 'FoodPages',
+    props: {
+        comments: []
+    },
     components: {
         Restaurantinfo,
+        Comments,
     },
     data () {
         return {
