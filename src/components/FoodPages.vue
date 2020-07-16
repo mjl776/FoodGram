@@ -1,6 +1,7 @@
 <template>
     <div class="container">
         <div class = "food-page">
+
         <div class="restaurant-name">
             {{ account.restaurant }}
         </div>
@@ -24,6 +25,10 @@
 
 import Restaurantinfo from './Restaurant_info.vue'
 import Comments from './Comments.vue'
+
+import Vue from 'vue';
+export const EventBus = new Vue();
+
 export default {
     name: 'FoodPages',
     props: {
