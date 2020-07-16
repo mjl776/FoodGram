@@ -3,8 +3,8 @@
         <p> Comments Section </p>    
 
         <p>
-            <label for = "name">Username: </label>
-            <input id = "name" v-model="name">
+            <label for = "username">Username: </label>
+            <input id = "username" v-model="username">
         </p>
 
         <p>
@@ -20,31 +20,31 @@
 </template>
 
 <script>
-import Vue from 'vue';
-export const EventBus = new Vue();
+import { EventBus } from './EventBus.js';
+
 
 export default {
     name: 'Comments',
     data () {
 		return {
-			name: null,
+			username: null,
 			comment: null,
             errors: []
 		}
     },
     methods: {
         onSubmit() {
-            if (this.name && this.comment) {
+            if (this.username && this.comment) {
                 let usercomment =  {
-                    name: this.name, 
+                    username: this.username, 
                     comment: this.comment
                 }
                 EventBus.$emit('comment-submitted', usercomment) 
-                this.name = null
+                this.username = null
                 this.comment = null
             }
             else {
-                if(!this.name) this.errors.push("Username required.")
+                if(!this.username) this.errors.push("Username required.")
                 if(!this.comment) this.errors.push("Comment required.")
             }
         }

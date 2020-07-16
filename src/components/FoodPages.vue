@@ -25,13 +25,10 @@
 
 import Restaurantinfo from './Restaurant_info.vue'
 import Comments from './Comments.vue'
-import { EventBus } from './Comments.vue';
+import { EventBus } from './EventBus.js';
 
 export default {
     name: 'FoodPages',
-    props: {
-        comments: []
-    },
     components: {
         Restaurantinfo,
         Comments,
@@ -43,11 +40,12 @@ export default {
                 Food: 'Pizza',
                 Location: 'World Trade Center',
                 Photo: "./photos/pizza.png",
+                comments: []
             },
         }
     },
     mounted() {
-        EventBus.$on('comment-submitted', usercomment=> {
+        EventBus.$on('comment-submitted', usercomment => {
             this.comments.push(usercomment)
         })
     }

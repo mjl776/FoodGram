@@ -16,9 +16,6 @@
 import Navbar from './components/Navbar'
 import FoodPages from './components/FoodPages'
 
-import Vue from 'vue';
-export const EventBus = new Vue();
-
 export default {
   name: 'app',
   components: {
