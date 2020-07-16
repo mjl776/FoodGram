@@ -25,9 +25,7 @@
 
 import Restaurantinfo from './Restaurant_info.vue'
 import Comments from './Comments.vue'
-
-import Vue from 'vue';
-export const EventBus = new Vue();
+import { EventBus } from './Comments.vue';
 
 export default {
     name: 'FoodPages',
@@ -47,6 +45,11 @@ export default {
                 Photo: "./photos/pizza.png",
             },
         }
+    },
+    mounted() {
+        EventBus.$on('comment-submitted', usercomment=> {
+            this.comments.push(usercomment)
+        })
     }
 };
 </script>

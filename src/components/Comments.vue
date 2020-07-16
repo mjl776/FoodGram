@@ -1,15 +1,15 @@
 <template>
-    <form class = "comments">
+    <form class = "comments" @submit.prevent = "onSubmit" >
         <p> Comments Section </p>    
 
         <p>
-            <label for = "name">Username:</label>
+            <label for = "name">Username: </label>
             <input id = "name" v-model="name">
         </p>
 
         <p>
-            <label for = "review">Comment:</label>      
-            <textarea id = "review" v-model="review"></textarea>
+            <label for = "comment">Comment: </label>      
+            <textarea id = "comment" v-model="comment"></textarea>
         </p>
 
         <p>
@@ -20,15 +20,35 @@
 </template>
 
 <script>
+import Vue from 'vue';
+export const EventBus = new Vue();
+
 export default {
     name: 'Comments',
     data () {
 		return {
 			name: null,
-			review: null,
+			comment: null,
             errors: []
 		}
-	}
+    },
+    methods: {
+        onSubmit() {
+            if (this.name && this.comment) {
+                let usercomment =  {
+                    name: this.name, 
+                    comment: this.comment
+                }
+                EventBus.$emit('comment-submitted', usercomment) 
+                this.name = null
+                this.comment = null
+            }
+            else {
+                if(!this.name) this.errors.push("Username required.")
+                if(!this.comment) this.errors.push("Comment required.")
+            }
+        }
+    }
 }
 </script>
 
