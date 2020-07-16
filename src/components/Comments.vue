@@ -1,13 +1,21 @@
 <template>
     <form class = "comments">
-        <p> Comments </p>    
-        <p>
-            <label for="name">Username:</label>
-            <input id="name" v-model="name">
+        <p> Comments Section </p>    
 
-            <label for="review">Comment:</label>      
-            <textarea id="review" v-model="review"></textarea>
+        <p>
+            <label for = "name">Username:</label>
+            <input id = "name" v-model="name">
         </p>
+
+        <p>
+            <label for = "review">Comment:</label>      
+            <textarea id = "review" v-model="review"></textarea>
+        </p>
+
+        <p>
+            <input type = "submit" value = "Submit">  
+        </p>  
+
     </form>
 </template>
 
@@ -27,6 +35,8 @@ export default {
 <style scoped>
     .comments {
         display: inline-block;
-        border: solid blue 0.5px;
+        border: solid black 0.5px;
+        padding: 20px;
+        margin-left: 30px;
     }
 </style>
