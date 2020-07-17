@@ -59,8 +59,8 @@ export default {
 
 nav a {
     color:green;
-    text-decoration: none;
-    text-transform: uppercase;
+    text-decoration: underline;
+    text-transform: bold;
 }
 
 </style>

@@ -29,6 +29,7 @@ export default {
     .container {
         width: 80%;
         margin: 0 auto;
+        font-family: Georgia;
     }
 
     nav input[type=text] {
