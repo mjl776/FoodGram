@@ -20,8 +20,8 @@
 </template>
 
 <script>
-import { EventBus } from './EventBus.js';
 
+import { EventBus } from '../main'
 
 export default {
     name: 'Comments',
@@ -56,7 +56,10 @@ export default {
     .comments {
         display: inline-block;
         border: solid black 0.5px;
-        padding: 20px;
+        border-width: medium;
         margin-left: 30px;
+        margin-top: 10px;
+        padding-top: 15px;
+        padding: 15px;
     }
 </style>

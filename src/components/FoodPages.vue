@@ -25,7 +25,7 @@
 
 import Restaurantinfo from './Restaurant_info.vue'
 import Comments from './Comments.vue'
-import { EventBus } from './EventBus.js';
+import { EventBus } from '../main'
 
 export default {
     name: 'FoodPages',
@@ -44,7 +44,7 @@ export default {
             },
         }
     },
-    mounted() {
+    created() {
         EventBus.$on('comment-submitted', usercomment => {
             this.comments.push(usercomment)
         })
@@ -60,6 +60,7 @@ export default {
         padding-top: 15px;
         padding: 15px;
         border: solid black 1px;
+        border-width: medium;
     }
     .photo {
         padding: 5px;
