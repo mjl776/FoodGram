@@ -21,9 +21,6 @@ export default {
   components: {
     Navbar,
     FoodPages
-  }, 
-  data() {
-    
   }
 }
 </script>
