@@ -40,13 +40,13 @@ export default {
                 Food: 'Pizza',
                 Location: 'World Trade Center',
                 Photo: "./photos/pizza.png",
-                comments: []
+                user_comments: []
             },
         }
     },
     created() {
         EventBus.$on('comment-submitted', usercomment => {
-            this.comments.push(usercomment)
+            this.account.user_comments.push(usercomment);
         })
     }
 };

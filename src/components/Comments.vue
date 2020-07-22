@@ -39,13 +39,13 @@ export default {
                     username: this.username, 
                     comment: this.comment
                 }
-                EventBus.$emit('comment-submitted', usercomment) 
-                this.username = null
-                this.comment = null
+                EventBus.$emit('comment-submitted', usercomment);
+                this.username = null;
+                this.comment = null;
             }
             else {
-                if(!this.username) this.errors.push("Username required.")
-                if(!this.comment) this.errors.push("Comment required.")
+                if(!this.username) this.errors.push("Username required.");
+                if(!this.comment) this.errors.push("Comment required.");
             }
         }
     }
