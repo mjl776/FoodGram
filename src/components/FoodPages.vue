@@ -24,8 +24,7 @@
 <script>
 
 import Restaurantinfo from './Restaurant_info.vue'
-import Comments from './Comments.vue'
-import { EventBus } from '../main'
+import Comments from './addComments.vue'
 
 export default {
     name: 'FoodPages',
@@ -40,16 +39,11 @@ export default {
                 Food: 'Pizza',
                 Location: 'World Trade Center',
                 Photo: "./photos/pizza.png",
-                user_comments: []
             },
         }
     },
-    created() {
-        EventBus.$on('comment-submitted', usercomment => {
-            this.account.user_comments.push(usercomment);
-        })
-    }
 };
+
 </script>
 
 <style scoped>
