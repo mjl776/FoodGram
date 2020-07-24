@@ -6,7 +6,7 @@ import axios from 'axios'
 Vue.config.productionTip = false
 
 // creates axios availible globally so it does not have to be imported everytime
-Vue.protype.$http = 'axios'; 
+Vue.prototype.$http = axios; 
 
 // Event Bus
 export const EventBus = new Vue();
