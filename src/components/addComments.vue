@@ -1,5 +1,5 @@
 <template>
-    <form class = "comments" @submit.prevent = "onSubmit" >
+    <form class = "comments" @submit.prevent = "post" >
         <p> Comments Section </p>    
 
         <p>
@@ -21,8 +21,6 @@
 
 <script>
 
-import { EventBus } from '../main'
-
 export default {
     name: 'Comments',
     data () {
@@ -33,20 +31,16 @@ export default {
 		}
     },
     methods: {
-        onSubmit() {
-            if (this.username && this.comment) {
-                let usercomment =  {
-                    username: this.username, 
-                    comment: this.comment
-                }
-                EventBus.$emit('comment-submitted', usercomment);
-                this.username = null;
-                this.comment = null;
-            }
-            else {
-                if(!this.username) this.errors.push("Username required.");
-                if(!this.comment) this.errors.push("Comment required.");
-            }
+        post: function() {
+            this.$http.post('https://jsonplaceholder.typicode.com/posts', {
+                title: this.username, 
+                body: this.comment,
+                userId: 1
+            }).then(function(data){
+                console.log(data);
+            });
+            this.username=null;
+            this.comment=null;
         }
     }
 }
