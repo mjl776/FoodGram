@@ -16,7 +16,8 @@
          />
         </div>
         <div class = "comment-section"> 
-            <Comments/>
+            <addComments/>
+            <showComments/>
         </div>
     </div>
 </template>
@@ -24,13 +25,15 @@
 <script>
 
 import Restaurantinfo from './Restaurant_info.vue'
-import Comments from './addComments.vue'
+import addComments from './addComments.vue'
+import showComments from './showComments.vue'
 
 export default {
     name: 'FoodPages',
     components: {
         Restaurantinfo,
-        Comments,
+        addComments,
+        showComments
     },
     data () {
         return {

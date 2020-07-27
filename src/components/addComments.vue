@@ -15,14 +15,14 @@
         <p>
             <input type = "submit" value = "Submit">  
         </p>  
-
+        
     </form>
 </template>
 
 <script>
 
 export default {
-    name: 'Comments',
+    name: 'addComments',
     data () {
 		return {
 			username: null,
