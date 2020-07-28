@@ -21,7 +21,7 @@ export default {
     },
     created() {
         this.$http.get('https://jsonplaceholder.typicode.com/posts').then(response => {
-            this.comments = response.data.slice(0,10);
+            this.comments = response.data.slice(0,5);
         });
     }
 }
