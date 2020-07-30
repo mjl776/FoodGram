@@ -5,20 +5,19 @@
       <header>
           <Navbar/>
       </header>
-    <FoodPages/>
+      <router-view></router-view>
     </div>
 </body>
 </template>
 
 <script>
 import Navbar from './components/Navbar'
-import FoodPages from './components/FoodPages'
+
 
 export default {
   name: 'app',
   components: {
-    Navbar,
-    FoodPages
+    Navbar
   }
 }
 </script>

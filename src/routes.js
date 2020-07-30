@@ -1,4 +1,6 @@
+import FoodPages from './components/FoodPages.vue'
 import addComments from './components/addComments.vue'
 export default [
-    { path: '/', component: addComments }
+    { path: '/', component: FoodPages },
+    { path: '/add', component: addComments }
 ]
