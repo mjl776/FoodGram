@@ -29,4 +29,21 @@ export default {
 
 <style scoped>
 
+h1 {
+    margin: 15px;
+}
+
+#showComments {
+    max-width: 800px;
+    margin: 0px;
+    font-size: 13px;
+}
+
+.single-comment {
+    padding: 15px; 
+    margin: 15px;
+    box-sizing: border-box;
+    background: grey;
+}
+
 </style>
