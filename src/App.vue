@@ -7,8 +7,6 @@
       </header>
     <FoodPages/>
     </div>
-  
-
 </body>
 </template>
 
