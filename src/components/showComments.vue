@@ -10,6 +10,8 @@
 </template>
 
 <script>
+import searchMixin from '../mixins/searchMixin'
+
 export default {
     name: 'showComments',
     data() {
@@ -27,13 +29,10 @@ export default {
         });
     }, 
     computed: {
-        filterComments: function() {
-            return this.comments.filter((comment) => {
-                return comment.title.match(this.search); 
-            })
-        }
-    }
+    },
+    mixins: [searchMixin]
 }
+
 </script>
 
 <style scoped>
