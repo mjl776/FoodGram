@@ -1,7 +1,8 @@
 <template>
     <div id = "showComments">
         <h1>Comments</h1>
-        <div v-for = "comments in comments" :key="comments.title" class = "single-comment">
+        <input type = "text" v-model="search" placeholder ="search commments"/>
+        <div v-for = "comments in filterComments" :key="comments.title" class = "single-comment">
             <h2> {{ comments.title }} </h2>
             <article> {{comments.body}} </article>
         </div>
@@ -13,7 +14,8 @@ export default {
     name: 'showComments',
     data() {
         return {
-            comments: []
+            comments: [],
+            search: ''
         }
     },
     methods: {
@@ -23,25 +25,28 @@ export default {
         this.$http.get('https://jsonplaceholder.typicode.com/posts').then(response => {
             this.comments = response.data.slice(0,5);
         });
+    }, 
+    computed: {
+        filterComments: function() {
+            return this.comments.filter((comment) => {
+                return comment.title.match(this.search); 
+            })
+        }
     }
 }
 </script>
 
 <style scoped>
 
-h1 {
-    margin: 15px;
-}
-
 #showComments {
     max-width: 800px;
-    margin: 0px;
+    margin: 15px;
     font-size: 13px;
 }
 
 .single-comment {
     padding: 15px; 
-    margin: 15px;
+    margin: 15px 0px;
     box-sizing: border-box;
     background: grey;
 }
