@@ -20,6 +20,7 @@
             <showComments/>
         </div>
     </div>
+    
 </template>
 
 <script>
@@ -63,5 +64,5 @@ export default {
         padding: 5px;
         margin-left: -4px;
     }
-  
+
 </style>
