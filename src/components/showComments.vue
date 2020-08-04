@@ -2,9 +2,13 @@
     <div id = "showComments">
         <h1>Comments</h1>
         <input type = "text" v-model="search" placeholder ="search commments"/>
+        <div class = "add comment">
+            <router-link to = "/add"> Add comment</router-link>
+        </div>
         <div v-for = "comments in filterComments" :key="comments.title" class = "single-comment">
             <h2> {{ comments.title }} </h2>
             <article> {{comments.body}} </article>
+            <router-link to = "/add"> Reply</router-link>
         </div>
     </div>
 </template>

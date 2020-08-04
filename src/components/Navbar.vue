@@ -2,7 +2,7 @@
     <div class = "container">
         <nav>
         <ul>
-            <li> <a href = "#whatshot"> What's hot </a> </li>
+            <li> <router-link to = "/"> Explorer Page</router-link></li>
             <li> <a href = "#Resteraunts"> Resteraunts </a> </li>
             <li> <a href = "#Accounts"> Account </a> </li>
             <input type="text" placeholder="Search..">
