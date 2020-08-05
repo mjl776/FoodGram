@@ -4,12 +4,12 @@
 
         <p>
             <label for = "username">Username: </label>
-            <input id = "username" v-model="username">
+            <input id = "username" v-model="comment.username">
         </p>
 
         <p>
             <label for = "comment">Comment: </label>      
-            <textarea id = "comment" v-model="comment"></textarea>
+            <textarea id = "comment" v-model="comment.text"></textarea>
         </p>
 
         <p>
@@ -25,9 +25,10 @@ export default {
     name: 'addComments',
     data () {
 		return {
-			username: null,
-			comment: null,
-            errors: []
+			comment: {
+                username: "",
+                text: ""
+            }
 		}
     },
     methods: {
@@ -35,8 +36,8 @@ export default {
             this.$http.post('https://foodgram-8dac2.firebaseio.com/comments.json', this.comment).then(function(data){
                 console.log(data);
             });
-            this.username=null;
-            this.comment=null;
+            this.comment.username=null;
+            this.comment.text=null;
         }
     }
 }

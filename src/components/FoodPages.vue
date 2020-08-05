@@ -1,20 +1,5 @@
 <template>
     <div class="container">
-        <div class = "food-page">
-
-        <div class="restaurant-name">
-            {{ account.restaurant }}
-        </div>
-
-        <div class = "photo">
-            <img src = "./photos/pizza.png"/> 
-        </div>
-
-        <Restaurantinfo 
-            :food = "account.Food"
-            :location = "account.Location"
-         />
-        </div>
         <div class = "comment-section"> 
             <showComments/>
         </div>
@@ -24,13 +9,11 @@
 
 <script>
 
-import Restaurantinfo from './Restaurant_info.vue'
 import showComments from './showComments.vue'
 
 export default {
     name: 'FoodPages',
     components: {
-        Restaurantinfo,
         showComments
     },
     data () {
