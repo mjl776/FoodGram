@@ -32,11 +32,7 @@ export default {
     },
     methods: {
         post: function() {
-            this.$http.post('https://jsonplaceholder.typicode.com/posts', {
-                title: this.username, 
-                body: this.comment,
-                userId: 1
-            }).then(function(data){
+            this.$http.post('https://foodgram-8dac2.firebaseio.com/comments.json', this.comment).then(function(data){
                 console.log(data);
             });
             this.username=null;
