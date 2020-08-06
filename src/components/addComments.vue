@@ -28,7 +28,7 @@ export default {
 			comment: {
                 username: "",
                 text: ""
-            }
+            }, 
 		}
     },
     methods: {
@@ -36,8 +36,6 @@ export default {
             this.$http.post('https://foodgram-8dac2.firebaseio.com/comments.json', this.comment).then(function(data){
                 console.log(data);
             });
-            this.comment.username=null;
-            this.comment.text=null;
         }
     }
 }
