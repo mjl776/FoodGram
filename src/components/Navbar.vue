@@ -46,6 +46,15 @@ export default {
         list-style: none;
     }
 
+    nav li {
+        display: inline-block;
+        margin-left: 70px;
+        padding-top: 23px;
+
+        position: relative;
+
+    }
+
     nav a {
         text-decoration: none;
         text-transform: uppercase;
@@ -55,5 +64,23 @@ export default {
     nav a:hover {
         color: turquoise
     }
+    
+    nav a::before {
+        content: '';
+        display: block; 
+        height: 5px;
+        background: green;
+
+        position: absolute;
+        top: 0;
+        width: 0%;
+
+        transition: all ease-in-out 250ms;
+    }
+
+    nav a:hover::before {
+        width: 100%;
+    }
+
 
 </style>
