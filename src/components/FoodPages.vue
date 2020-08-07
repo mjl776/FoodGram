@@ -16,16 +16,6 @@ export default {
     components: {
         showComments
     },
-    data () {
-        return {
-            account: {
-                restaurant: 'Eataly',
-                Food: 'Pizza',
-                Location: 'World Trade Center',
-                Photo: "./photos/pizza.png",
-            },
-        }
-    },
 };
 
 </script>
