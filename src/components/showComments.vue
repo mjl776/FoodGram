@@ -4,11 +4,11 @@
         <input type = "text" v-model="search" placeholder ="search commments"/>
         <div class = "add comment">
             <router-link to = "/add"> Add comment</router-link>
-        </div>
-        <div v-for = "comments in filterComments" :key="comments.username" class = "single-comment">
+            <div v-for = "comments in filterComments" :key="comments.id" class = "single-comment">
             <h2> {{ comments.username }} </h2>
-            <article> {{ comments.text }} </article>
+            <article> {{ comments.text }}</article>
             <router-link to = "/add"> Reply</router-link>
+        </div>
         </div>
     </div>
 </template>
@@ -24,19 +24,16 @@ export default {
             search: ''
         }
     },
-    methods: {
-
-    },
     created() {
-        this.$http.get('https://foodgram-8dac2.firebaseio.com/comments.json').then(function(data) {
+        this.$http.get('https://foodgram-8dac2.firebaseio.com/comments.json').then(data=> {
            return data.data;
-        }).then(function(data) {
+        }).then(data=> {
             var commentsArray = [];
             for (let key in data) {
                 data[key].id = key 
                 commentsArray.push(data[key]);
             }
-            this.comments=commentsArray;
+            this.comments = commentsArray;
         })
     }, 
     computed: {
