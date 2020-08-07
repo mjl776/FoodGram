@@ -7,7 +7,7 @@
             <div v-for = "comments in filterComments" :key="comments.id" class = "single-comment">
             <h2> {{ comments.username }} </h2>
             <article> {{ comments.text }}</article>
-            <router-link to = "/add"> Reply</router-link>
+            <router-link to = "/addcomments"> Reply</router-link>
         </div>
         </div>
     </div>

@@ -2,8 +2,8 @@
     <div class = "container">
         <nav>
         <ul>
-            <li> <router-link to = "/"> Explorer Page</router-link></li>
-            <li><router-link to = "/Restaurants"> Restaurants </router-link> </li>
+            <li> <router-link tag = "a" to = "/"> Explorer Page</router-link></li>
+            <li><router-link tag = "a" to = "/Restaurants"> Restaurants </router-link> </li>
             <li> <a href = "#Accounts"> Account </a> </li>
             <input type="text" placeholder="Search..">
         </ul>
@@ -44,6 +44,16 @@ export default {
         margin: 0;
         padding: 0;
         list-style: none;
+    }
+
+    nav a {
+        text-decoration: none;
+        text-transform: uppercase;
+        color:black;
+    }
+
+    nav a:hover {
+        color: turquoise
     }
 
 </style>
