@@ -3,7 +3,7 @@
         <nav>
         <ul>
             <li> <router-link to = "/"> Explorer Page</router-link></li>
-            <li> <a href = "#Resteraunts"> Resteraunts </a> </li>
+            <li><router-link to = "/Restaurants"> Restaurants </router-link> </li>
             <li> <a href = "#Accounts"> Account </a> </li>
             <input type="text" placeholder="Search..">
         </ul>

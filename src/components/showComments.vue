@@ -3,7 +3,7 @@
         <h1>Comments</h1>
         <input type = "text" v-model="search" placeholder ="search commments"/>
         <div class = "add comment">
-            <router-link to = "/add"> Add comment</router-link>
+            <router-link to = "/addcomments"> Add comment</router-link>
             <div v-for = "comments in filterComments" :key="comments.id" class = "single-comment">
             <h2> {{ comments.username }} </h2>
             <article> {{ comments.text }}</article>
