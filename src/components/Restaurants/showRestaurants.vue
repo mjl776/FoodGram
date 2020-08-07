@@ -1,7 +1,7 @@
 <template>
 
     <div class = "container"> 
-        <li><router-link to = "/addRestaurantaccount"> Add Restaurant </router-link> </li>
+        <li><router-link tag = a to = "/addRestaurantaccount"> Add Restaurant </router-link> </li>
     </div>
 </template>
 
@@ -15,13 +15,25 @@ export default {
 
 li {
     list-style: none;
+    position:relative;
 }
 .container {
     margin: auto;
     width: 50%;
-    padding: 10px;
+    padding: 30px;
     text-align: center;
 
 }
+
+a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color:black;
+}
+
+a:hover {
+    color: turquoise
+}
+
 
 </style>

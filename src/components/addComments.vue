@@ -3,12 +3,12 @@
         <p> Comments Section </p>    
 
         <p>
-            <label for = "username">Username: </label>
+            <label for = "username"> Username: </label>
             <input id = "username" v-model="comment.username">
         </p>
 
         <p>
-            <label for = "comment">Comment: </label>      
+            <label for = "comment"> Comment: </label>      
             <textarea id = "comment" v-model="comment.text"></textarea>
         </p>
 
