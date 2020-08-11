@@ -14,7 +14,7 @@ export default {
         }
     },
     created() {
-        this.$http.get('https://jsonplaceholder.typicode.com/posts/' + this.id).then(data => {
+        this.$http.get('https://jsonplaceholder.typicode.com/posts/' + this.id + '.json').then(data => {
             this.post = data.data;
         });
     }

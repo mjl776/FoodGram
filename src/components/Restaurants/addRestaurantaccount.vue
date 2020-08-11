@@ -15,7 +15,11 @@
             <label for = "hours" > Hours of operation: </label>      
             <textarea id = "hours" v-model="restaurant.hours"></textarea>
         <p>
-        
+        <p>
+            <label for = "description" > Description: </label>      
+            <textarea id = "description" v-model="restaurant.description"></textarea>
+        <p>
+
             <input type = "submit" value = "Submit">  
         </p>  
         
@@ -33,6 +37,7 @@ export default {
                 name: "", 
                 address: "",
                 hours: "",
+                description: "",
             }
         }
     },
@@ -42,6 +47,7 @@ export default {
                 console.log(data);
             });
         }
+
     }
 }
 </script>
