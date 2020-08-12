@@ -1,7 +1,7 @@
 <template>
     <div id = "single-post"> 
         <h1> {{ post.name }} </h1>
-        <article> {{ post.hours }}</article>
+        <article> {{ post.description }}</article>
     </div>
 </template>
 
