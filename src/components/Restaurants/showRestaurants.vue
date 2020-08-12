@@ -6,7 +6,7 @@
             <input type = "text" v-model="search" placeholder ="search Restaurants"/>
             <li><router-link tag = a to = "/addRestaurantaccount"> Add Restaurant </router-link> </li>
                 <div v-for = "restaurants in filterRestaurants" :key="restaurants.id" class = "single-comment">
-                    <h2> {{ restaurants.name }} </h2>
+                   <router-link v-bind:to= "'/restaurants/' + restaurants.id" > <h2> {{ restaurants.name }} </h2> </router-link>
                     <article> {{ restaurants.description }}</article>
                     
                 </div>

@@ -6,7 +6,7 @@ import addRestaurantaccount from './components/Restaurants/addRestaurantaccount.
 export default [
     { path: '/', component: FoodPages },
     { path: '/addcomments', component: addComments },
-    { path: '/post/:id', component: singlePost },
+    { path: '/restaurants/:id', component: singlePost },
     { path: '/Restaurants', component: showRestaurants },
     { path: '/addRestaurantaccount', component: addRestaurantaccount}
 ]
