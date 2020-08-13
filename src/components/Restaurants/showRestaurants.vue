@@ -8,7 +8,6 @@
                 <div v-for = "restaurants in filterRestaurants" :key="restaurants.id" class = "single-comment">
                    <router-link v-bind:to = "'/restaurants/' + restaurants.id"> <h2> {{ restaurants.name }} </h2> </router-link>
                     <article> {{ restaurants.description }}</article>
-                    
                 </div>
         </div>
     </div>
@@ -34,7 +33,7 @@ export default {
                 data[key].id = key 
                 restaurantsArray.push(data[key]);
             }
-            this.restaurants= restaurantsArray;
+            this.restaurants = restaurantsArray;
         })
     },
     computed: {

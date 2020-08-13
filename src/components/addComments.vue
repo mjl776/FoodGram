@@ -35,13 +35,13 @@ export default {
     },
     methods: {
         post: function() {
-            this.comment.username= this.username;
-            this.comment.text= this.text;
+            this.comment.username = this.username;
+            this.comment.text = this.text;
             this.$http.post('https://foodgram-8dac2.firebaseio.com/comments.json', this.comment).then(data=>{
                 console.log(data);
             });
-            this.username=null;
-            this.text=null;
+            this.username = null;
+            this.text = null;
         }
     }
 }
