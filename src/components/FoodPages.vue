@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <div class = "comment-section"> 
-            <showComments/>
+            <showRestaurants/>
         </div>
     </div>
     
@@ -9,12 +9,12 @@
 
 <script>
 
-import showComments from './showComments.vue'
+import showRestaurants from './Restaurants/showRestaurants.vue'
 
 export default {
     name: 'FoodPages',
     components: {
-        showComments
+        showRestaurants
     },
 };
 
