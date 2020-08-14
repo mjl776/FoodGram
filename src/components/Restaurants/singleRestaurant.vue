@@ -1,12 +1,18 @@
 <template>
     <div class = "single-restaurant"> 
-        <h1> {{ post.name }} </h1>
-        <article> {{ post.price }}</article>
+        
         <router-link v-bind:to= "'/restaurants/' + this.id + '/addRestaurantposts'" tag = a> Add Post </router-link>
+        <div v-for = "post in filterPosts" :key="post.id" class = "single-post">
+                    <li><router-link tag = a to = "/showSinglePost"><h2> {{ post.food }} </h2> </router-link> </li>
+                    <article> {{ post.description }}</article>
+                    <article> {{ post.price }}</article>
+        </div>
     </div>
 </template>
 
 <script>
+import searchMixin from '../../mixins/searchMixin'
+
 export default {
     data() {
         return {
@@ -15,18 +21,22 @@ export default {
         }
     },
     created() {
-          this.$http.get('https://foodgram-8dac2.firebaseio.com/restaurants/' + this.id + '/posts').then(data=> {
+          this.$http.get('https://foodgram-8dac2.firebaseio.com/restaurants/' + this.id + '/posts.json').then(data=> {
            return data.data;
         }).then(data=> {
-            var restaurantArray = [];
+            var postArray = [];
             for (let key in data) {
                 data[key].id = key 
-                restaurantArray.push(data[key]);
+                postArray.push(data[key]);
             }
-            this.post = restaurantArray;
+            this.post = postArray;
         });
-    }
+    },
+    computed: {
+    },
+    mixins: [searchMixin]
 }
+
 </script>
 
 <style scoped>
