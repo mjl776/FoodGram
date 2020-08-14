@@ -52,7 +52,7 @@ export default {
         },
         post: function () {
             this.r_post.description= this.description;
-            this.r_post.price = this.price; 
+            this.r_post.price = "$"+ this.price; 
             this.r_post.food = this.food;
             this.$http.post('https://foodgram-8dac2.firebaseio.com/restaurants/' + this.id + '/posts.json', this.r_post).then(data=> {
                 console.log(data);
