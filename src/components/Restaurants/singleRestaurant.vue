@@ -1,7 +1,7 @@
 <template>
     <div class = "single-restaurant"> 
         <h1> {{ post.name }} </h1>
-        <article> {{ post.description }}</article>
+        <article> {{ post.price }}</article>
         <router-link v-bind:to= "'/restaurants/' + this.id + '/addRestaurantposts'" tag = a> Add Post </router-link>
     </div>
 </template>
@@ -11,12 +11,19 @@ export default {
     data() {
         return {
             id: this.$route.params.id,
-            post: {}       
+            post: []   
         }
     },
     created() {
-        this.$http.get('https://foodgram-8dac2.firebaseio.com/restaurants/' + this.id + '.json').then(data => {
-            this.post = data.data;
+          this.$http.get('https://foodgram-8dac2.firebaseio.com/restaurants/' + this.id + '/posts').then(data=> {
+           return data.data;
+        }).then(data=> {
+            var restaurantArray = [];
+            for (let key in data) {
+                data[key].id = key 
+                restaurantArray.push(data[key]);
+            }
+            this.post = restaurantArray;
         });
     }
 }
