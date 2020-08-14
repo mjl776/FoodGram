@@ -4,6 +4,10 @@
         <h1> Add Post Information</h1>
 
         <p>
+            <input type = "file" @change= "onFileSelected">
+        </p>
+
+        <p>
             <label for = "Food" > Food: </label>      
             <input id = "Food" v-model="food"> 
         </p>
@@ -33,7 +37,7 @@ export default {
             food: "",
             price: "",
             description: "",
-
+            selectedFile: null,
             r_post: {
                 food: "",
                 price: "",
@@ -42,6 +46,10 @@ export default {
         }
     },
     methods: {
+        onFileSelected(event) {
+            this.selectedFile= event.target.files[0];
+            console.log(this.selectedFile);
+        },
         post: function () {
             this.r_post.description= this.description;
             this.r_post.price = this.price; 
@@ -54,17 +62,16 @@ export default {
             this.description=null;
         }
     }
-    
 }
 </script>
 
 <style scoped>
-.restaurantposts {
+
+    .restaurantposts {
         margin: auto;
         width: 50%;
         padding: 20px;
         font-family: Courier;
     }
-
 
 </style>
