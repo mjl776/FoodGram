@@ -1,9 +1,8 @@
 <template>
     <div class = "single-restaurant"> 
-        
         <router-link v-bind:to= "'/restaurants/' + this.id + '/addRestaurantposts'" tag = a> Add Post </router-link>
-        <div v-for = "post in filterPosts" :key="post.id" class = "single-post">
-                    <li><router-link tag = a to = "/showSinglePost"><h2> {{ post.food }} </h2> </router-link> </li>
+        <div v-for = "post in filterPosts" :key="post.id" class = "single-post"  @click="save_url()">
+                    <li><router-link tag = a v-bind:to = "'/Posts/' + post.id"><h2> {{ post.food }} </h2> </router-link> </li>
                     <article> {{ post.description }}</article>
                     <article> {{ post.price }}</article>
         </div>
@@ -12,16 +11,18 @@
 
 <script>
 import searchMixin from '../../mixins/searchMixin'
+import { EventBus } from '../../main.js'
 
 export default {
     data() {
         return {
             id: this.$route.params.id,
-            post: []   
+            post: [],
         }
     },
     created() {
-          this.$http.get('https://foodgram-8dac2.firebaseio.com/restaurants/' + this.id + '/posts.json').then(data=> {
+
+        this.$http.get('https://foodgram-8dac2.firebaseio.com/restaurants/' + this.id + '/posts.json').then(data=> {
            return data.data;
         }).then(data=> {
             var postArray = [];
@@ -31,6 +32,12 @@ export default {
             }
             this.post = postArray;
         });
+    },
+    mehtods: {
+        save_url() {
+            var save_url ='https://foodgram-8dac2.firebaseio.com/restaurants/' + this.id;
+            EventBus.$emit('url-saved', save_url);
+        }
     },
     computed: {
     },
@@ -47,6 +54,12 @@ export default {
         text-align: center;
 
     }
+
+    li {
+        list-style: none;
+        position:relative;
+    }
+
     a {
         text-decoration: none;
         text-transform: uppercase;
