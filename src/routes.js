@@ -13,5 +13,5 @@ export default [
     { path: '/Restaurants', component: showRestaurants },
     { path: '/addRestaurantaccount', component: addRestaurantaccount},
     { path: '/Restaurants/:id/addRestaurantposts', component: addRestaurantPosts},
-    { path: '/Posts/:id', component: singlePost} 
+    { path: '/Restaurants/Posts/:id', component: singlePost} 
 ]

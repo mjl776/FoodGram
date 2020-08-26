@@ -1,8 +1,8 @@
 <template>
     <div class = "single-restaurant"> 
         <router-link v-bind:to= "'/restaurants/' + this.id + '/addRestaurantposts'" tag = a> Add Post </router-link>
-        <div v-for = "post in filterPosts" :key="post.id" class = "single-post"  @click="save_url()">
-                    <li><router-link tag = a v-bind:to = "'/Posts/' + post.id"><h2> {{ post.food }} </h2> </router-link> </li>
+        <div v-for = "post in filterPosts" :key="post.id" class = "single-post">
+                    <li><router-link tag = a v-bind:to = "'/Restaurants'+'/Posts/' + post.id" ><h2> {{ post.food }} </h2> </router-link> </li>
                     <article> {{ post.description }}</article>
                     <article> {{ post.price }}</article>
         </div>
