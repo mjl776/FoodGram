@@ -28,8 +28,6 @@
     </form>
 </template>
 
-
-
 <script>
 export default {
     name: "addRestaurantPosts",
@@ -50,8 +48,8 @@ export default {
     methods: {
         onFileSelected(event) {
             this.selectedFile = event.target.files[0];
-            console.log(this.selectedFile);
         },
+
         post: function () {
             this.r_post.description = this.description;
             this.r_post.price = "$"+ this.price; 
@@ -59,6 +57,13 @@ export default {
             this.$http.post('https://foodgram-8dac2.firebaseio.com/restaurants/' + this.id + '/posts.json', this.r_post).then(data=> {
                 console.log(data);
             });
+            
+            const fd = new FormData();
+            fd.append('image', this.selectedFile, this.selectedFile.name);
+            this.$http.post('https://us-central1-foodgram-8dac2.cloudfunctions.net/uploadFile',fd).then(res =>{
+                console.log(res);
+            });
+
             this.price = null;
             this.food = null;
             this.description = null;
