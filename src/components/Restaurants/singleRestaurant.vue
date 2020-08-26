@@ -11,7 +11,6 @@
 
 <script>
 import searchMixin from '../../mixins/searchMixin'
-import { EventBus } from '../../main.js'
 
 export default {
     data() {
@@ -34,10 +33,6 @@ export default {
         });
     },
     mehtods: {
-        save_url() {
-            var save_url ='https://foodgram-8dac2.firebaseio.com/restaurants/' + this.id;
-            EventBus.$emit('url-saved', save_url);
-        }
     },
     computed: {
     },
