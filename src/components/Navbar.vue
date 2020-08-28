@@ -4,7 +4,7 @@
         <ul>
             <li> <router-link tag = "a" to = "/"> Explorer Page</router-link></li>
             <li><router-link tag = "a" to = "/Restaurants"> Restaurants </router-link> </li>
-            <li> <a href = "#Accounts"> Account </a> </li>
+            <li> <router-link tag = "a" to = "/Accounts"> Accounts </router-link> </li>
             <input type="text" placeholder="Search..">
         </ul>
         </nav>
