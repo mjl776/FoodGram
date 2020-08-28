@@ -49,7 +49,7 @@ export default {
         text-decoration: none;
     }
 
-     .container {
+    .container {
         margin: auto;
         width: 50%;        
         padding: 30px;

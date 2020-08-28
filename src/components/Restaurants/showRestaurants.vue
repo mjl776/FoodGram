@@ -55,6 +55,7 @@ li {
     padding: 30px;
     text-align: center;
     font-size: 25px;
+    color:black;
 
 }
 
