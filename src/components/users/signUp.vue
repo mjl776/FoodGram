@@ -46,5 +46,6 @@ export default {
         width: 50%;        
         padding: 4px;
         text-align: center;
+        font-size: 30px;
     }
 </style>

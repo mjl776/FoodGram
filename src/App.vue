@@ -26,6 +26,10 @@ export default {
 
   body {
     margin: 0px;
+    background-color:lightblue;
+    background:url('./components/photos/background.png');
+    background-size: 1420px;
+    background-repeat: no-repeat;
   }
   
   .logo {
@@ -33,7 +37,7 @@ export default {
   }
 
   header {
-      background: linear-gradient(-90deg,#FA8072,#00FFFF);
+    background-color:lightblue
   }
 
   header::after {
@@ -56,5 +60,6 @@ nav a {
     text-decoration: underline;
     text-transform: bold;
 }
+
 
 </style>
