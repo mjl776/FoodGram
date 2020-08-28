@@ -2,21 +2,25 @@
     <div class = "single-restaurant"> 
         <router-link v-bind:to= "'/restaurants/' + this.id + '/addRestaurantposts'" tag = a> Add Post </router-link>
         <div v-for = "post in filterPosts" :key="post.id" class = "single-post">
-                    <li><router-link tag = a v-bind:to = "'/Restaurants'+'/Posts/' + post.id" ><h2> {{ post.food }} </h2> </router-link> </li>
-                    <article> {{ post.description }}</article>
-                    <article> {{ post.price }}</article>
+                <li> <router-link tag = a v-bind:to = "'/Restaurants'+'/Posts/' + post.id" @click.native ="url_saver"> <h2> {{ post.food }} </h2> </router-link> </li>
+                <article> {{ post.description }}</article>
+                <article> {{ post.price }}</article>
         </div>
     </div>
 </template>
 
 <script>
+
 import searchMixin from '../../mixins/searchMixin'
+import { EventBus } from '../../main.js'
 
 export default {
+    name: 'singleRestaurant',
     data() {
         return {
             id: this.$route.params.id,
             post: [],
+            save: null
         }
     },
     created() {
@@ -32,7 +36,11 @@ export default {
             this.post = postArray;
         });
     },
-    mehtods: {
+    methods: {
+        url_saver: function() {
+            this.save = 'https://foodgram-8dac2.firebaseio.com/restaurants/' + this.id + '/posts/';
+            EventBus.$emit('url_saved', this.save);
+        }
     },
     computed: {
     },
