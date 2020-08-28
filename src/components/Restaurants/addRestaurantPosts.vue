@@ -57,6 +57,8 @@ export default {
             this.$http.post(this.r_post.post_url, this.r_post).then(data=> {
                 console.log(data);
             });
+
+
             if (this.selectedFile!=null) {
                 const fd = new FormData();
                 fd.append('image', this.selectedFile, this.selectedFile.name);
@@ -64,10 +66,12 @@ export default {
                     console.log(res);
                 });
             }
+
+            
             this.price = null;
             this.food = null;
             this.description = null;
-            
+
         }
     }
 }
