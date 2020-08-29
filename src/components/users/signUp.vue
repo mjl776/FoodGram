@@ -1,17 +1,17 @@
 <template>
     <form class = "sign-up-form" @submit.prevent= "post">
         <p>
-            <label for = "email"> email: </label>
+            <label for = "email"> Email: </label>
             <input id = "email" v-model="email">
         </p>
 
         <p>
-            <label for = "username" > username: </label>      
+            <label for = "username" > Username: </label>      
             <input id = "username" v-model="username"> 
         </p>
         
         <p>
-            <label for = "password" > password: </label>      
+            <label for = "password" > Password: </label>      
             <input id = "password" v-model="password"> 
         <p>
 
