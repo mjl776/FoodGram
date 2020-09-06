@@ -28,7 +28,7 @@ export default {
     margin: 0px;
     background-color:lightblue;
     background:url('./components/photos/background.png');
-    background-size: 1420px;
+    background-size: 1440px;
     background-repeat: no-repeat;
   }
   
