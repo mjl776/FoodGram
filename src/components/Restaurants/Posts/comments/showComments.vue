@@ -24,6 +24,7 @@ export default {
             search: ''
         }
     },
+    
     created() {
         this.$http.get('https://foodgram-8dac2.firebaseio.com/comments.json').then(data=> {
            return data.data;
