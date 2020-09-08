@@ -75,7 +75,7 @@ a:hover {
 .text-box {
     width: 200px;
     height: 30px;
+    font-size: 15px;
 }    
-
 
 </style>

@@ -15,8 +15,10 @@
                 <input type = "submit" value = "Submit">  
             </p>  
         </form> 
-        <div class ="sign-up redirect"> 
-            <li> <router-link tag = a to = "/Accounts/sign-up">  Sign up for account  </router-link> </li>
+        <div class ="sign-up-redirect"> 
+            <nav>
+                <li> <router-link tag = a to = "/Accounts/sign-up">  Sign up  </router-link> </li>
+            </nav>
         </div>
     </div>
 </template>
@@ -49,6 +51,11 @@ export default {
         text-decoration: none;
     }
 
+    .sign-up-redirect {
+        font-size: 20px;
+        text-transform: uppercase;
+    }
+
     .container {
         margin: auto;
         width: 50%;        
@@ -56,20 +63,38 @@ export default {
         text-align: center;
     }
 
-    li {
+    nav li {
         list-style: none;
         position:relative;
+        padding-top: 20px;
+        margin-left: 0px;
     }
 
-    a {
+
+    nav a {
         text-decoration: none;
-        text-transform: none;
         color:black;
-        text-align: center;
     }
 
-    a:hover {
-        color: turquoise
+    nav a:hover {
+        color: turquoise;
+    }
+    
+    nav a::before {
+        content: '';
+        display: block; 
+        height: 5px;
+        background: green;
+
+        position: absolute;
+        top: 0;
+        width: 0%;
+
+        transition: all ease-in-out 250ms;
+    }
+
+    nav a:hover::before {
+        width: 100%;
     }
 
 </style>
