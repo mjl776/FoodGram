@@ -29,6 +29,7 @@
 </template>
 
 <script>
+import firebase from '../../firebase/init'
 export default {
     name: "addRestaurantPosts",
     data () {
@@ -60,11 +61,7 @@ export default {
 
 
             if (this.selectedFile!=null) {
-                const fd = new FormData();
-                fd.append('image', this.selectedFile, this.selectedFile.name);
-                this.$http.post('https://us-central1-foodgram-8dac2.cloudfunctions.net/uploadFile',fd).then(res =>{
-                    console.log(res);
-                });
+                
             }
 
             
