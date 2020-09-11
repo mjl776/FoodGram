@@ -1,60 +1,60 @@
 <template>
-<body>
-    <img alt="FoodGram Logo" class = "logo" src="./assets/FoodGram.png"/>
-    <div id="app">
-      <header>
-          <Navbar/>
-      </header>
-      <router-view></router-view>
-    </div>
-</body>
+  <v-app>
+    <v-app-bar
+      app
+      color="primary"
+      dark
+    >
+      <div class="d-flex align-center">
+        <v-img
+          alt="Vuetify Logo"
+          class="shrink mr-2"
+          contain
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
+          transition="scale-transition"
+          width="40"
+        />
+
+        <v-img
+          alt="Vuetify Name"
+          class="shrink mt-1 hidden-sm-and-down"
+          contain
+          min-width="100"
+          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
+          width="100"
+        />
+      </div>
+
+      <v-spacer></v-spacer>
+
+      <v-btn
+        href="https://github.com/vuetifyjs/vuetify/releases/latest"
+        target="_blank"
+        text
+      >
+        <span class="mr-2">Latest Release</span>
+        <v-icon>mdi-open-in-new</v-icon>
+      </v-btn>
+    </v-app-bar>
+
+    <v-main>
+      <HelloWorld/>
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import Navbar from './components/Navbar'
-
+import HelloWorld from './components/HelloWorld';
 
 export default {
-  name: 'app',
+  name: 'App',
+
   components: {
-    Navbar
-  }
-}
+    HelloWorld,
+  },
+
+  data: () => ({
+    //
+  }),
+};
 </script>
-
-<style>
-
-  body {
-    margin: 0px;
-  }
-  
-  .logo {
-    float: left;
-  }
-
-  header {
-      background: linear-gradient(-90deg,#FA8072,#00FFFF);
-  }
-
-  header::after {
-      content: '';
-      display: table;
-      clear: both;
-  }
-
-  nav li {
-    display: inline-block;
-    margin-left: 70px;
-    padding-top: 25px;
-
-
-    position: relative;
-}
-
-nav a {
-    color:green;
-    text-decoration: underline;
-    text-transform: bold;
-}
-
-</style>

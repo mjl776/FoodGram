@@ -9,6 +9,11 @@ export default {
             return this.restaurants.filter(restaurant => {
                 return restaurant.name.match(this.search); 
         }) 
-    }
+    },
+        filterPosts: function() {
+            return this.post.filter(post=> {
+                return post.food.match(this.search)
+            }) 
+        }
 }
 }
