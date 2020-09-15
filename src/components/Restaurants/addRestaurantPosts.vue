@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import firebase from '../../firebase/init'
+
 export default {
     name: "addRestaurantPosts",
     data () {
@@ -60,9 +60,9 @@ export default {
             });
 
 
-            if (this.selectedFile!=null) {
+            //if (this.selectedFile!=null) {
                 
-            }
+            //}
 
             
             this.price = null;
