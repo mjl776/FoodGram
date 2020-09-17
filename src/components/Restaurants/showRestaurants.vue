@@ -8,7 +8,7 @@
                 <div v-for = "restaurants in filterRestaurants" :key="restaurants.id" class = "single-comment">
                    <router-link v-bind:to = "'/restaurants/' + restaurants.id"> <h2> {{ restaurants.name }} </h2> </router-link>
                      <article> {{ restaurants.address }}</article>
-                    <article> {{ restaurants.description }}</article>
+                     <article> {{ restaurants.description }}</article>
                      <article> {{ restaurants.hours }}</article>
                 </div>
         </div>
