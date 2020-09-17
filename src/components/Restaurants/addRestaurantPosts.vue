@@ -29,7 +29,7 @@
 </template>
 
 <script>
-
+import firebase from '../../firebase/init'
 export default {
     name: "addRestaurantPosts",
     data () {
@@ -39,6 +39,9 @@ export default {
             price: "",
             description: "",
             selectedFile: null,
+            imageData: null,
+            picture: null,
+            uploadValue: 0,
             r_post: {
                 food: "",
                 price: "",
@@ -48,9 +51,11 @@ export default {
     },
     methods: {
         onFileSelected(event) {
-            this.selectedFile = event.target.files[0];
+            this.uploadValue=0;
+            this.picture=null;
+            this.imageData = event.target.files[0];  
+            console.log(this.imageData);
         },
-
         post: function () {
             this.r_post.description = this.description;
             this.r_post.price = "$"+ this.price; 
@@ -59,19 +64,27 @@ export default {
                 console.log(data);
             });
 
-
-            //if (this.selectedFile!=null) {
-                
-            //}
-
-            
+            if (this.selectedFile!=null) {
+                this.picture = null;
+               const storageRef = firebase.storage().ref(`${this.imageData.name}`).put(this.imageData);
+               storageRef.on(`state_changed`,snapshot=>{
+                  this.uploadValue = (snapshot.bytesTransferred/snapshot.totalBytes)*100;
+               }, error=>{console.log(error.message)},
+                  ()=>{
+                  this.uploadValue=100;
+                  storageRef.snapshot.ref.getDownloadURL().then((url)=>{
+                    this.picture =url;
+               });
+           });
+        }
             this.price = null;
             this.food = null;
             this.description = null;
-
-        }
+        },
+    },
+        
     }
-}
+
 </script>
 
 <style scoped>
