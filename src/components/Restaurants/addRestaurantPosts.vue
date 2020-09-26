@@ -61,7 +61,11 @@ export default {
             this.imageData = event.target.files[0];  
         },
         post: function () {
-           
+           // sets posts description, food, and price
+           this.r_post.description = this.description;
+           this.r_post.price = "$" + this.price; 
+           this.r_post.food = this.food;
+
             var storageRef = firebase.storage().ref();
             var metadata = {
                 contentType: 'image/jpeg'
@@ -105,18 +109,13 @@ export default {
                                 uploadTask.snapshot.ref.getDownloadURL().then(downloadURL => {
                                 this.picture = downloadURL;
                                 console.log('File available at', downloadURL);
+                                this.r_post.picture = this.picture;
+                                //posts when photo is done uploading
+                                this.$http.post('https://foodgram-8dac2.firebaseio.com/restaurants/' + this.id +'/posts.json', this.r_post).then(data => {
+                                    console.log(data);
+                                });
                         });
                     });
-        
-        // Posts user data to firebase after photo completion
-        this.r_post.description = this.description;
-        this.r_post.price = "$" + this.price; 
-        this.r_post.food = this.food;
-        this.r_post.picture = this.picture;
-
-        this.$http.post('https://foodgram-8dac2.firebaseio.com/restaurants/' + this.id +'/posts.json', this.r_post).then(data => {
-            console.log(data);
-        });
 
         this.picture = null;
         this.price = null;
