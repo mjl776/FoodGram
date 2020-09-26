@@ -19,6 +19,7 @@ export default {
             }
         }
     },
+    
     created() {
         EventBus.$on('url_saved', save => {
             this.url = save + this.id;
