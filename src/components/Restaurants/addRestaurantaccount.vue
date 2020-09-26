@@ -20,7 +20,7 @@
             <textarea id = "description" v-model="description"></textarea>
         <p>
 
-            <input type = "submit" value = "Submit">  
+            <v-btn><input type = "submit" value = "Submit"> </v-btn>
         </p>  
         
     </form>

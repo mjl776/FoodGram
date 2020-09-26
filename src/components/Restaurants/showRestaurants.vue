@@ -4,7 +4,7 @@
         <div class ="showRestaurants">
         <h1> Restaurants </h1>
             <input type = "text" v-model="search" class = "text-box" placeholder ="Search Restaurants..."/>
-            <li><router-link tag = a to = "/addRestaurantaccount"> Add Restaurant </router-link> </li>
+            <li><v-btn><router-link tag = a to = "/addRestaurantaccount"> Add Restaurant </router-link> </v-btn> </li>
                 <div v-for = "restaurants in filterRestaurants" :key="restaurants.id" class = "single-comment">
                    <router-link v-bind:to = "'/restaurants/' + restaurants.id"> <h2> {{ restaurants.name }} </h2> </router-link>
                      <article> {{ restaurants.address }}</article>

@@ -1,9 +1,9 @@
 <template>
     <div class = "single-restaurant"> 
-        <router-link v-bind:to= "'/restaurants/' + this.id + '/addRestaurantposts'" tag = a> Add Post </router-link>
+       <v-btn class="add_p"> <router-link v-bind:to= "'/restaurants/' + this.id + '/addRestaurantposts'" tag = a> Add Post </router-link></v-btn>
         <div v-for = "post in filterPosts" :key="post.id" class = "single-post">
                 <v-img :src= "post.picture" class="post_pic"> </v-img>
-                <li> <router-link tag = a v-bind:to = "'/Restaurants'+'/Posts/' + post.id" @click.native ="url_saver"> <h2> {{ post.food }} </h2> </router-link> </li>
+                <li> <router-link tag = a v-bind:to = "'/Restaurants'+'/Posts/' + post.id" @click.native ="url_saver"> <h2> {{ post.food }} </h2> </router-link></li>
                 <article> {{ post.description }}</article>
                 <article> {{ post.price }}</article>
         </div>
@@ -82,5 +82,7 @@ export default {
         color: turquoise
     }
 
-    
+    .add_p {
+        margin: 20px;
+    }
 </style>
