@@ -1,5 +1,6 @@
 <template>
 <div class = "single-post">
+        <v-img :src= "post.picture" class="post_pic"> </v-img>
         <h1> {{ post.food }} </h1>
         <div> {{ post.description}} </div>
         <div> {{ post.price}} </div>
@@ -45,6 +46,7 @@ export default {
 </script>
 
 <style scoped>
+
     .single-post {
         margin: auto;
         width: 50%;
@@ -52,4 +54,13 @@ export default {
         text-align: center;
 
     }
+
+    .post_pic {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+        width: 50%;
+        height: 200px;
+    }
+    
 </style>
