@@ -15,7 +15,7 @@
             <input id = "password" v-model="password"> 
         <p>
 
-            <input type = "submit" value = "Submit">  
+           <v-btn> <input type = "submit" value = "Submit">  </v-btn>
         </p>  
     </form> 
 </template>

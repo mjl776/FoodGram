@@ -12,13 +12,11 @@
                 <input id = "password" v-model="password"> 
             <p>
 
-                <input type = "submit" value = "Submit">  
+                <v-btn><input type = "submit" value = "Submit"> </v-btn>
             </p>  
         </form> 
         <div class ="sign-up-redirect"> 
-            <nav>
-                <li> <router-link tag = a to = "/Accounts/sign-up">  Sign up  </router-link> </li>
-            </nav>
+            <li> <v-btn><router-link tag = a to = "/Accounts/sign-up">  Sign up  </router-link></v-btn> </li>
         </div>
     </div>
 </template>
@@ -63,7 +61,7 @@ export default {
         text-align: center;
     }
 
-    nav li {
+    li {
         list-style: none;
         position:relative;
         padding-top: 20px;
@@ -71,30 +69,14 @@ export default {
     }
 
 
-    nav a {
+    a {
         text-decoration: none;
         color:black;
     }
 
-    nav a:hover {
+    a:hover {
         color: turquoise;
     }
-    
-    nav a::before {
-        content: '';
-        display: block; 
-        height: 5px;
-        background: green;
-
-        position: absolute;
-        top: 0;
-        width: 0%;
-
-        transition: all ease-in-out 250ms;
-    }
-
-    nav a:hover::before {
-        width: 100%;
-    }
+ 
 
 </style>

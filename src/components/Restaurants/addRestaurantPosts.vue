@@ -23,7 +23,7 @@
         </p> 
 
         <p>
-            <input type = "submit" value = "Post">  
+          <v-btn>  <input type = "submit" value = "Post"> </v-btn> 
         </p>  
     </form>
 </template>
