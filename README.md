@@ -1,2 +1,2 @@
 # FoodGram
-A website for people to view photos of a restaurant and interact with the photos giving their reviews
+A Instagram-like website to view food pictures and comment your reviews
