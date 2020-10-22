@@ -8,22 +8,28 @@
         </p>
       
         <p>
-            <label for = "Food" > Food: </label>      
-            <input id = "Food" v-model="food"> 
+            <v-text-field
+                label="Food"
+                v-model="food">
+            </v-text-field>
         </p>
 
         <p>
-            <label for = "Price" > price: </label>      
-            <input id = "Price" v-model="price"> 
+            <v-text-field
+                label="Price"
+                v-model="price">
+            </v-text-field>
         </p>
 
-        <p> 
-            <label for = "Description" > Description: </label>  
-            <textarea id = "Description" v-model="description"></textarea>
+        <p>    
+            <v-textarea
+                label="Description"
+                v-model="description">
+            </v-textarea>
         </p> 
-
+           
         <p>
-          <v-btn>  <input type = "submit" value = "Post"> </v-btn> 
+           <input type = "submit" value = "Post"> 
         </p>  
     </form>
 </template>
@@ -37,7 +43,6 @@ export default {
         return {
             id: this.$route.params.id,
 
-            
             food: "",
             price: "",
             description: "",
@@ -62,9 +67,9 @@ export default {
         },
         post: function () {
            // sets posts description, food, and price
-           this.r_post.description = this.description;
-           this.r_post.price = "$" + this.price; 
            this.r_post.food = this.food;
+           this.r_post.price = "$" + this.price; 
+           this.r_post.description = this.description;
 
             var storageRef = firebase.storage().ref();
             var metadata = {

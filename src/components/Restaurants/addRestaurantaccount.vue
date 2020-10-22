@@ -2,25 +2,33 @@
  <form class = "restaurants" @submit.prevent = "post" >
         <h1> Add Restaurant Information</h1>
         <p>
-            <label for = "Restaurant_name"> Restaurant name: </label>
-            <input id = "Restaurant_name" v-model="name">
+           <v-text-field
+                label="Restaurant Name"
+                v-model="name">
+            </v-text-field>
         </p>
 
         <p>
-            <label for = "Address" > Address: </label>      
-            <input id = "Address" v-model="address"> 
+            <v-text-field
+                label="Address"
+                v-model="address">
+            </v-text-field>
         </p>
         
          <p>
-            <label for = "hours" > Hours of operation: </label>      
-            <textarea id = "hours" v-model="hours"></textarea>
+            <v-text-field
+                label="Hours of operation"
+                v-model="hours">
+            </v-text-field>
         </p>
         <p>
-            <label for = "description" > Description: </label>      
-            <textarea id = "description" v-model="description"></textarea>
+             <v-textarea
+                label="Description"
+                v-model="description">
+            </v-textarea>
         <p>
-
-            <v-btn><input type = "submit" value = "Submit"> </v-btn>
+        <p>
+            <input type = "submit" value = "Submit"> 
         </p>  
         
     </form>
