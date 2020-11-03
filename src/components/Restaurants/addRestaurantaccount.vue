@@ -60,15 +60,34 @@ export default {
             this.restaurant.address = this.address;
             this.restaurant.hours = this.hours;
             this.restaurant.description = this.description;
+            
+            if (this.restaurant.name && this.restaurant.address  && this.restaurant.hours && this.restaurant.description) {
+                
+                this.$http.post('https://foodgram-8dac2.firebaseio.com/restaurants.json', this.restaurant).then(data=>{
+                    console.log(data);
+                });
 
-            this.$http.post('https://foodgram-8dac2.firebaseio.com/restaurants.json', this.restaurant).then(data=>{
-                console.log(data);
-            });
+                this.name = null;
+                this.address = null;
+                this.hours = null; 
+                this.description = null;
+            }
 
-            this.name = null;
-            this.address = null;
-            this.hours = null; 
-            this.description = null;
+            if (!this.restaurant.name) {
+                console.log("ERROR: restaurant name is not filled ")
+            }
+
+            if (!this.restaurant.address) {
+                console.log("ERROR: restaurant address is not filled ")
+            }
+
+            if (!this.restaurant.hours) {
+                console.log("ERROR: restaurant hours is not filled ")
+            }
+
+            if (!this.restaurant.description) {
+                console.log("ERROR: restaurant description is not filled ")
+            }
             
         }
     }
