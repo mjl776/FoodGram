@@ -5,7 +5,7 @@
         <h1> Restaurants </h1>
             <input type = "text" v-model="search" class = "text-box" placeholder ="Search Restaurants..."/>
             <li><v-btn><router-link tag = a to = "/addRestaurantaccount"> Add Restaurant </router-link> </v-btn> </li>
-                <div v-for = "restaurants in filterRestaurants" :key="restaurants.id" class = "single-comment">
+                <div v-for = "restaurants in filterRestaurants" :key="restaurants.id" class = "single-restaurant">
                    <router-link v-bind:to = "'/restaurants/' + restaurants.id"> <h2> {{ restaurants.name }} </h2> </router-link>
                      <article> {{ restaurants.address }}</article>
                      <article> {{ restaurants.description }}</article>
@@ -50,6 +50,10 @@ li {
     list-style: none;
     position:relative;
     padding: 20px;
+}
+
+.single-restaurant {
+    padding: 10px;
 }
 
 .container {
