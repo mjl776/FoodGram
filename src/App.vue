@@ -26,10 +26,12 @@ export default {
 
   body {
     margin: 0px;
-    background-color:lightblue;
-    background:url('./components/photos/background.png');
+    background-color:#FFF8DC
+
+    /* background:url('./components/photos/background.png');
     background-size: 1560px;
     background-repeat: no-repeat;
+    */
   }
   
   .logo {
