@@ -65,11 +65,15 @@ export default {
             this.picture = null;
             this.imageData = event.target.files[0];  
         },
+
         post: function () {
            // sets posts description, food, and price
            this.r_post.food = this.food;
-           this.r_post.price = "$" + this.price; 
+           this.r_post.price = this.price;
            this.r_post.description = this.description;
+           this.r_post.picture = this.imageData;
+
+           if (this.r_post.food && this.r_post.price && this.r_post.description && this.imageData) {
 
             var storageRef = firebase.storage().ref();
             var metadata = {
@@ -78,7 +82,7 @@ export default {
                 // Posts method to post photos to Firebase
                 var folder = this.id; 
                 folder = this.id;
-                
+
                 var uploadTask = storageRef.child(folder + '/' + this.imageData.name).put(this.imageData, metadata);
                 uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, 
                 (snapshot) =>{
@@ -115,6 +119,9 @@ export default {
                                 this.picture = downloadURL;
                                 console.log('File available at', downloadURL);
                                 this.r_post.picture = this.picture;
+                                
+                                // adds a price tag in front of price before posting
+                                this.r_post.price = "$" + this.price; 
                                 //posts when photo is done uploading
                                 this.$http.post('https://foodgram-8dac2.firebaseio.com/restaurants/' + this.id +'/posts.json', this.r_post).then(data => {
                                     console.log(data);
@@ -122,10 +129,29 @@ export default {
                         });
                     });
 
-        this.picture = null;
-        this.price = null;
-        this.food = null;
-        this.description = null;
+                    this.picture = null;
+                    this.price = null;
+                    this.food = null;
+                    this.description = null;
+                    this.imageData = null;
+
+           }
+
+            if (!this.r_post.food) {
+               console.log("ERROR: Please enter a food label");
+            }
+
+            if (!this.r_post.price) {
+               console.log("ERROR: Please enter a price");
+            }
+
+            if (!this.r_post.description) {
+               console.log("ERROR: Please enter a description");
+            }
+
+            if (!this.r_post.picture) {
+               console.log("ERROR: Please enter a picture");
+            }
 
         },
 
