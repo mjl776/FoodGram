@@ -29,7 +29,7 @@
         </p> 
            
         <p>
-           <input type = "submit" value = "Post"> 
+           <v-btn type = "submit" value = "post" > Post </v-btn>
         </p>  
     </form>
 </template>
@@ -167,7 +167,7 @@ export default {
         margin: auto;
         width: 50%;
         padding: 20px;
-        font-family: Courier;
+        font-family: "Georgia";
         text-align: center;
     }
 

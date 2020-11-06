@@ -28,7 +28,7 @@
             </v-textarea>
         <p>
         <p>
-            <input type = "submit" value = "Submit"> 
+           <v-btn type = "submit" value = "submit"> Submit </v-btn>
         </p>  
         
     </form>
@@ -100,7 +100,7 @@ export default {
         margin: auto;
         width: 50%;
         padding: 20px;
-        font-family: Courier;
+        font-family: Georgia;
         text-align: center;
     }
 
