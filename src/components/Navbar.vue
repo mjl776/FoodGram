@@ -5,7 +5,8 @@
             <li> <router-link tag = "a" to = "/"> Explorer Page</router-link></li>
             <li><router-link tag = "a" to = "/Restaurants"> Restaurants </router-link> </li>
             <li> <router-link tag = "a" to = "/Accounts"> Accounts </router-link> </li>
-            <input type = "text" placeholder = "Search..">
+            <v-text-field outline label = "Search..." class = "text-box"></v-text-field>
+
         </ul>
         </nav>
     </div>
@@ -31,14 +32,14 @@ export default {
         font-family: Georgia;
     }
 
-    nav input[type=text] {
+    .text-box {
         float: left;
         padding: 8px;
         border: none;
         margin-top: 17px;
         margin-right: 16px;
         font-size: 17px;
-    }
+    }  
 
     nav ul {
         margin: 0;
@@ -50,7 +51,6 @@ export default {
         display: inline-block;
         margin-left: 70px;
         padding-top: 23px;
-
         position: relative;
 
     }

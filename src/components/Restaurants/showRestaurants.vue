@@ -3,7 +3,7 @@
     <div class = "container"> 
         <div class ="showRestaurants">
         <h1> Restaurants </h1>
-            <input type = "text" v-model="search" class = "text-box" placeholder ="Search Restaurants..."/>
+            <v-text-field outline label = "Search Restaurants..." class = "text-box"></v-text-field>
             <li><v-btn><router-link tag = a to = "/addRestaurantaccount"> Add Restaurant </router-link> </v-btn> </li>
                 <div v-for = "restaurants in filterRestaurants" :key="restaurants.id" class = "single-restaurant">
                    <router-link v-bind:to = "'/restaurants/' + restaurants.id"> <h2> {{ restaurants.name }} </h2> </router-link>
@@ -80,6 +80,10 @@ a:hover {
     width: 200px;
     height: 30px;
     font-size: 15px;
+    text-align: center;
+    display: inline-block;
+    padding: 5px;
+
 }    
 
 </style>
