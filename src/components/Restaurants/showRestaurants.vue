@@ -17,7 +17,7 @@
 
 <script>
 import searchMixin from '../../mixins/searchMixin'
-
+import firebase from '../../firebase/init'
 export default {
     name: "showRestaurants",
     data() {
@@ -27,16 +27,13 @@ export default {
         }
     },
     created() {
-        this.$http.get('https://foodgram-8dac2.firebaseio.com/restaurants.json').then(data=> {
-           return data.data;
-        }).then(data=> {
-            var restaurantsArray = [];
-            for (let key in data) {
-                data[key].id = key 
-                restaurantsArray.push(data[key]);
-            }
-            this.restaurants = restaurantsArray;
-        })
+       var db = firebase.firestore();
+       db.collection('test').get().then(
+        snapshot=> {
+            snapshot.forEach( doc => {
+                console.log(doc);
+            });
+        });
     },
     computed: {
     },
