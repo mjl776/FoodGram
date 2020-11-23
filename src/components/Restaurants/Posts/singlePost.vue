@@ -1,46 +1,45 @@
 <template>
 <div class = "single-post">
+    <div v-for = "post in filterPosts" :key="post.id" class = "single-post">
         <v-img :src= "post.picture" class="post_pic"> </v-img>
         <h1> {{ post.food }} </h1>
         <div> {{ post.description}} </div>
-        <div> {{ post.price}} </div>
+        <div> {{ "$" + post.price}} </div>
+    </div>
 </div>
 </template>
 
 <script>
-import { EventBus } from '../../../main.js'
+import firebase from '../../../firebase/init'
+import searchMixin from '../../../mixins/searchMixin'
+
 export default {
     name: "singlePost",
     data () {
         return {
             id: this.$route.params.id,
+            previousid: this.$router.id,
             post: {},
-            url: {
-                type: String
-            }
         }
     },
     
     created() {
-        EventBus.$on('url_saved', save => {
-            this.url = save + this.id;
-            this.$http.get(this.url + '.json').then(data=>{
-                return data.data;
-            }).then(data => {
-                this.post = data;
+       var db = firebase.firestore();
+       db.collection('restaurants').doc(this.previousid).collection('posts').doc(this.id).get().then(
+        snapshot => {
+            snapshot.forEach( doc => {
+                let post = doc.data();
+                post.id = doc.id;
+                this.post.push(post);
             });
         });
-      
-         
+        
     },
     methods: {
-        url_saver: function() {
-            this.save = this.url;
-            EventBus.$emit('url_saved', this.save);
-        }
     },
     computed: {
-    }
+    },
+    mixins: [searchMixin]
 }
 
 </script>

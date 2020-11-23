@@ -64,15 +64,14 @@ export default {
             this.restaurant.address = this.address;
             this.restaurant.hours = this.hours;
             this.restaurant.description = this.description;
-            
             if (this.restaurant.name && this.restaurant.address  && this.restaurant.hours && this.restaurant.description) {
                 // pushes restaurant data to db 
-                db.collection('restaurants').add({
+                db.collection('restaurants').doc(this.restaurant.name).add({
                     name: this.restaurant.name,
                     address: this.restaurant.address,
                     hours: this.restaurant.hours, 
                     description: this.restaurant.description,
-                    slug: this.restaurant.slug
+                    slug: this.restaurant.slug,
                 // catches errors
                 }).catch(err=> {
                     console.log(err);
@@ -83,6 +82,7 @@ export default {
                 this.hours = null; 
                 this.description = null;
                 this.slug = null; 
+                this.posts = null;
             }
 
             if (!this.restaurant.name) {

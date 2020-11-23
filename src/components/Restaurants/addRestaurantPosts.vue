@@ -35,6 +35,7 @@
 </template>
 
 <script>
+
 import firebase from '../../firebase/init';
 
 export default {
@@ -67,6 +68,7 @@ export default {
         },
 
         post: function () {
+           var db = firebase.firestore();
            // sets posts description, food, and price
            this.r_post.food = this.food;
            this.r_post.price = this.price;
@@ -74,16 +76,19 @@ export default {
            this.r_post.picture = this.imageData;
 
            if (this.r_post.food && this.r_post.price && this.r_post.description && this.imageData) {
-
+            
             var storageRef = firebase.storage().ref();
             var metadata = {
                 contentType: 'image/jpeg'
             };
                 // Posts method to post photos to Firebase
+                // folder for restaurant photos based on ID
                 var folder = this.id; 
-                folder = this.id;
 
-                var uploadTask = storageRef.child(folder + '/' + this.imageData.name).put(this.imageData, metadata);
+                // post folder for specific posts
+                var post_folder = this.r_post.food;
+
+                var uploadTask = storageRef.child(folder + '/' + post_folder + '/' + this.imageData.name).put(this.imageData, metadata);
                 uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, 
                 (snapshot) =>{
                     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
@@ -119,13 +124,17 @@ export default {
                                 this.picture = downloadURL;
                                 console.log('File available at', downloadURL);
                                 this.r_post.picture = this.picture;
-                                
-                                // adds a price tag in front of price before posting
-                                this.r_post.price = "$" + this.price; 
+                                 
                                 //posts when photo is done uploading
-                                this.$http.post('https://foodgram-8dac2.firebaseio.com/restaurants/' + this.id +'/posts.json', this.r_post).then(data => {
-                                    console.log(data);
-                                });
+                                db.collection('restaurants').doc(this.id).collection("posts").doc(this.r_post.food).set({
+                                     picture: this.r_post.picture,
+                                     food: this.r_post.food,
+                                     price: this.r_post.price,
+                                     description: this.r_post.description
+                                }).catch(err => {
+                                    console.log(err)
+                                })
+
                         });
                     });
 

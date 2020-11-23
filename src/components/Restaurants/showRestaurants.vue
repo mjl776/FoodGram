@@ -28,12 +28,12 @@ export default {
     },
     created() {
        var db = firebase.firestore();
-       db.collection('test').get().then(
+       db.collection('restaurants').get().then(
         snapshot => {
             snapshot.forEach( doc => {
-                let test = doc.data();
-                test.id = doc.id;
-                this.restaurants.push(test);
+                let restaurant = doc.data();
+                restaurant.id = doc.id;
+                this.restaurants.push(restaurant);
             });
         });
     },
