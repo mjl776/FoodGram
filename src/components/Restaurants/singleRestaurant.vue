@@ -3,7 +3,7 @@
        <v-btn class="add_p"> <router-link v-bind:to= "'/restaurants/' + this.id + '/addRestaurantposts'" tag = a> Add Post </router-link></v-btn>
         <div v-for = "post in filterPosts" :key="post.id" class = "single-post">
                 <v-img :src= "post.picture" class="post_pic"> </v-img>
-                <li> <router-link tag = a v-bind:to = "'/Restaurants'+'/Posts/' + post.id" @click.native ="url_saver"> <h2> {{ post.food }} </h2> </router-link></li>
+                <li> <router-link tag = a v-bind:to = "'/Restaurants'+'/Posts/' + post.id"> <h2> {{ post.food }} </h2> </router-link></li>
                 <article> {{ post.description }}</article>
                 <article> {{ post.price }}</article>
         </div>
@@ -13,35 +13,29 @@
 <script>
 
 import searchMixin from '../../mixins/searchMixin'
-import { EventBus } from '../../main.js'
-
+import firebase from '../../firebase/init'
 export default {
     name: 'singleRestaurant',
     data() {
         return {
             id: this.$route.params.id,
             post: [],
-            save: null
         }
     },
     created() {
 
-        this.$http.get('https://foodgram-8dac2.firebaseio.com/restaurants/' + this.id + '/posts.json').then(data=> {
-           return data.data;
-        }).then(data=> {
-            var postArray = [];
-            for (let key in data) {
-                data[key].id = key 
-                postArray.push(data[key]);
-            }
-            this.post = postArray;
+      var db = firebase.firestore();
+      db.collection('restaurants').doc(this.id).collection('posts').get().then(
+        snapshot => {
+            snapshot.forEach( doc => {
+                let post = doc.data();
+                post.id = doc.id;
+                this.post.push(post);
+            });
         });
     },
+
     methods: {
-        url_saver: function() {
-            this.save = 'https://foodgram-8dac2.firebaseio.com/restaurants/' + this.id + '/posts/';
-            EventBus.$emit('url_saved', this.save);
-        }
     },
     computed: {
     },
