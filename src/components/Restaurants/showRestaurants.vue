@@ -29,9 +29,11 @@ export default {
     created() {
        var db = firebase.firestore();
        db.collection('test').get().then(
-        snapshot=> {
+        snapshot => {
             snapshot.forEach( doc => {
-                console.log(doc);
+                let test = doc.data();
+                test.id = doc.id;
+                this.restaurants.push(test);
             });
         });
     },

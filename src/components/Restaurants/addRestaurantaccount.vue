@@ -36,6 +36,7 @@
 
 
 <script>
+import firebase from '../../firebase/init';
 
 export default {
     name: "addRestaurantaccount",
@@ -45,32 +46,43 @@ export default {
               address: "",
               hours: "",
               description: "",
+              slug: "",
             restaurant: {
                 name: "", 
                 address: "",
                 hours: "",
+                slug: "",
                 description: "",
             }
         }
     },
     methods: {
         post: function() {
-
+            var db = firebase.firestore()
             this.restaurant.name = this.name;
+            this.restaurant.slug = this.name.toLowerCase();
             this.restaurant.address = this.address;
             this.restaurant.hours = this.hours;
             this.restaurant.description = this.description;
             
             if (this.restaurant.name && this.restaurant.address  && this.restaurant.hours && this.restaurant.description) {
-                
-                this.$http.post('https://foodgram-8dac2.firebaseio.com/restaurants.json', this.restaurant).then(data=>{
-                    console.log(data);
-                });
+                // pushes restaurant data to db 
+                db.collection('restaurants').add({
+                    name: this.restaurant.name,
+                    address: this.restaurant.address,
+                    hours: this.restaurant.hours, 
+                    description: this.restaurant.description,
+                    slug: this.restaurant.slug
+                // catches errors
+                }).catch(err=> {
+                    console.log(err);
+                })
 
                 this.name = null;
                 this.address = null;
                 this.hours = null; 
                 this.description = null;
+                this.slug = null; 
             }
 
             if (!this.restaurant.name) {
