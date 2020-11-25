@@ -3,9 +3,9 @@
        <v-btn class="add_p"> <router-link v-bind:to= "'/restaurants/' + this.id + '/addRestaurantposts'" tag = a> Add Post </router-link></v-btn>
         <div v-for = "post in filterPosts" :key="post.id" class = "single-post">
                 <v-img :src= "post.picture" class="post_pic"> </v-img>
-                <li> <router-link tag = a v-bind:to = "'/Restaurants'+'/Posts/' + post.id"> <h2> {{ post.food }} </h2> </router-link></li>
+                <h2>  {{ post.food }} </h2> 
                 <article> {{ post.description }}</article>
-                <article> {{ post.price }}</article>
+                <article> {{ "$" + post.price }}</article>
         </div>
     </div>
 </template>
