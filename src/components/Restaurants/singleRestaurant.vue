@@ -1,7 +1,7 @@
 <template>
     <div class = "single-restaurant"> 
-       <v-btn class="add_p"> <router-link v-bind:to= "'/restaurants/' + this.id + '/addRestaurantposts'" tag = a> Add Post </router-link></v-btn>
-        <div v-for = "post in filterPosts" :key="post.id" class = "single-post">
+       <v-btn class="add_post"> <router-link v-bind:to= "'/restaurants/' + this.id + '/addRestaurantposts'" tag = a> Add Post </router-link></v-btn>
+        <div v-for = "post in filterPosts" :key="post.id">
                 <v-img :src= "post.picture" class="post_pic"> </v-img>
                 <h2>  {{ post.food }} </h2> 
                 <article> {{ post.description }}</article>
@@ -46,19 +46,19 @@ export default {
 
 <style scoped>
     .single-restaurant {
-        margin: auto;
+        margin: left;
         width: 50%;
         padding: 30px;
         text-align: center;
-
     }
 
     .post_pic {
         display: block;
         margin-left: auto;
         margin-right: auto;
-        width: 50%;
-        height: 200px;
+        width: 75%;
+        height: 275px;
+
     }
 
     li {
@@ -76,7 +76,8 @@ export default {
         color: turquoise
     }
 
-    .add_p {
+    .add_post {
         margin: 20px;
     }
+    
 </style>
