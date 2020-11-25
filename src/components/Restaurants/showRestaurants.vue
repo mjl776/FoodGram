@@ -3,7 +3,7 @@
     <div class = "container"> 
         <div class ="showRestaurants">
         <h1> Restaurants </h1>
-            <v-text-field outline label = "Search Restaurants..." class = "text-box"></v-text-field>
+            <v-text-field type = "text" outline label = "Search Restaurants..." v-model="search" class = "text-box"></v-text-field>
             <li><v-btn><router-link tag = a to = "/addRestaurantaccount"> Add Restaurant </router-link> </v-btn> </li>
                 <div v-for = "restaurants in filterRestaurants" :key="restaurants.id" class = "single-restaurant">
                    <router-link v-bind:to = "'/restaurants/' + restaurants.id"> <h2> {{ restaurants.name }} </h2> </router-link>
