@@ -66,7 +66,7 @@ export default {
             this.restaurant.description = this.description;
             if (this.restaurant.name && this.restaurant.address  && this.restaurant.hours && this.restaurant.description) {
                 // pushes restaurant data to db 
-                db.collection('restaurants').doc(this.restaurant.name).add({
+                db.collection('restaurants').add({
                     name: this.restaurant.name,
                     address: this.restaurant.address,
                     hours: this.restaurant.hours, 
