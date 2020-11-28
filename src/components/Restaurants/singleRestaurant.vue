@@ -1,12 +1,18 @@
 <template>
     <div class = "single-restaurant"> 
-       <v-btn class="add_post"> <router-link v-bind:to= "'/restaurants/' + this.id + '/addRestaurantposts'" tag = a> Add Post </router-link></v-btn>
-        <div v-for = "post in filterPosts" :key="post.id">
-                <v-img :src= "post.picture" class="post_pic"> </v-img>
-                <h2>  {{ post.food }} </h2> 
-                <article> {{ post.description }}</article>
-                <article> {{ "$" + post.price }}</article>
-        </div>
+            <div v-for = "post in filterPosts" :key="post.id" class = "post-border">
+                <div class = "post">
+                    <header class = "post-header">
+                        <div v-for = "restaurants in filterRestaurants" :key="restaurants.id">
+                            {{ restaurants.name }}
+                        </div>
+                    </header>
+                    <v-img :src= "post.picture" class="post_pic"> </v-img>
+                    <h2>  {{ post.food }} </h2> 
+                    <article> {{ "$" + post.price }}</article>
+                    <article> {{ post.description }}</article>
+                </div> 
+            </div>
     </div>
 </template>
 
@@ -20,11 +26,19 @@ export default {
         return {
             id: this.$route.params.id,
             post: [],
+            restaurants: []
         }
     },
     created() {
 
-      var db = firebase.firestore();
+       var db = firebase.firestore();
+       db.collection('restaurants').doc(this.id).get().then(
+        doc => {
+            let restaurant = doc.data();
+            restaurant.id = doc.id;
+            this.restaurants.push(restaurant);
+        });
+    
       db.collection('restaurants').doc(this.id).collection('posts').get().then(
         snapshot => {
             snapshot.forEach( doc => {
@@ -33,6 +47,7 @@ export default {
                 this.post.push(post);
             });
         });
+
     },
 
     methods: {
@@ -46,19 +61,27 @@ export default {
 
 <style scoped>
     .single-restaurant {
-        margin: left;
-        width: 50%;
-        padding: 30px;
-        text-align: center;
-    }
-
-    .post_pic {
         display: block;
         margin-left: auto;
         margin-right: auto;
-        width: 75%;
-        height: 275px;
+        width: 50%;
+        padding: 30px;
+    }
 
+    .post-border {
+        padding: 20px;
+    }
+
+    .post {
+         text-align: center;   
+         border: 1px solid black;
+         background-color: white;
+         width: 60%;
+    }
+
+    .post_pic {
+        padding: 10px;
+        height: 275px;
     }
 
     li {
@@ -74,10 +97,6 @@ export default {
 
     a:hover {
         color: turquoise
-    }
-
-    .add_post {
-        margin: 20px;
     }
     
 </style>
