@@ -76,7 +76,7 @@ export default {
                 }).catch(err=> {
                     console.log(err);
                 })
-
+                
                 this.name = null;
                 this.address = null;
                 this.hours = null; 

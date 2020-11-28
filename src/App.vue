@@ -2,7 +2,7 @@
 <body>
     <img alt="FoodGram Logo" class = "logo" src="./assets/FoodGram.png"/>
     <div id="app">
-      <header>
+      <header class = "navbar">
           <Navbar/>
       </header>
       <router-view></router-view>
@@ -38,7 +38,7 @@ export default {
     float: left;
   }
 
-  header {
+  .navbar {
       background-color:lightblue
   }
 
