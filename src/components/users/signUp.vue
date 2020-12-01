@@ -1,26 +1,30 @@
 <template>
-    <form class = "sign-up-form" @submit.prevent= "post">
+    <form class = "sign-up-form" @submit.prevent= "signup">
         <p>
-            <label for = "email"> Email: </label>
-            <input id = "email" v-model="email">
+          <v-text-field label="email"
+            v-model="email"> 
+            </v-text-field>
         </p>
 
         <p>
-            <label for = "username" > Username: </label>      
-            <input id = "username" v-model="username"> 
+            <v-text-field label="username"
+            v-model="username"> 
+            </v-text-field>
         </p>
-        
         <p>
-            <label for = "password" > Password: </label>      
-            <input id = "password" v-model="password"> 
+            <v-text-field label="password"
+            v-model="password"> 
+            </v-text-field>
         <p>
-
-           <v-btn> <input type = "submit" value = "Submit">  </v-btn>
+           <v-btn type = "submit" value = "signup"> Sign up </v-btn>
         </p>  
     </form> 
 </template>
 
 <script>
+import firebase from '../../firebase/init';
+
+import slugify from 'slugify';
 export default {
     name:'signUp',
     data() {
@@ -28,14 +32,56 @@ export default {
             username: null,
             password: null, 
             email: null,  
+            feedback: null,
+            slug: null,
             account: {
                 username: null,
                 password: null, 
-                email: null
+                email: null,
+                slug: null,
             }
         }
     },
     methods: {
+        signup: function() {
+            this.account.username = this.name
+            this.account.password = this.password
+            this.account.email = this.email
+            var db = firebase.firestore()
+            if (this.username && this.email && this.password) {
+                this.slug = slugify(this.username,{
+                    replacement: '-', 
+                    remove: /[$*_+~()'"!-:@]/g,
+                    lower: true
+                })
+                let ref = db.collection('user').doc(this.slug)
+                ref.get().then(doc => {
+                    if(doc.exists) {
+                        this.feedback = "this username already exists"
+                    } else {
+                        this.account.username=this.slug 
+                        firebase.auth().createUserWithEmailAndPassword(this.account.email, this.account.password).then(cred=>{
+                            ref.set({
+                                username: this.account.username,
+                                user_id: cred.user.uid
+                            })
+                        })
+                        .catch(err=> {
+                            console.log(err);
+                            this.feedback = err.message;
+                        })
+                        this.feedback = "this username is free"
+                    }
+                })
+            } 
+            else {
+                this.feedback = "You must enter all fields";
+            }
+            // reseting fields 
+            this.username = null;
+            this.password = null;
+            this.email = null; 
+        }
     }
 }
 </script>
@@ -47,5 +93,6 @@ export default {
         padding: 4px;
         text-align: center;
         font-size: 30px;
+        background-color: white;
     }
 </style>

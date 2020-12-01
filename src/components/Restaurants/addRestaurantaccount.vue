@@ -4,7 +4,8 @@
         <p>
            <v-text-field
                 label="Restaurant Name"
-                v-model="name">
+                v-model="name"
+                >
             </v-text-field>
         </p>
 
