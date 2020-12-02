@@ -15,15 +15,15 @@ var firebaseConfig = {
   measurementId: "G-LK4JFLL22E"
 };
 
-  // Initialize Firebase
+// Initialize Firebase
 
 firebase.initializeApp(firebaseConfig);
-
-// initialize firestore
-
 
 // intializes firebase storage 
 const storage = firebase.storage(); 
 
 export { storage, firebase as default }
+
+
+
 

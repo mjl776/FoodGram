@@ -62,8 +62,7 @@ export default {
 <style scoped>
     .single-restaurant {
         display: block;
-        margin-left: auto;
-        margin-right: auto;
+        margin-left: 50px;
         width: 50%;
         padding: 30px;
     }
@@ -76,12 +75,14 @@ export default {
          text-align: center;   
          border: 1px solid black;
          background-color: white;
-         width: 60%;
+         width: 350px;
+
     }
 
     .post_pic {
         padding: 10px;
         height: 275px;
+
     }
 
     li {

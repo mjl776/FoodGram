@@ -4,7 +4,8 @@
         <p>
            <v-text-field
                 label="Restaurant Name"
-                v-model="name">
+                v-model="name"
+                >
             </v-text-field>
         </p>
 
@@ -64,7 +65,9 @@ export default {
             this.restaurant.address = this.address;
             this.restaurant.hours = this.hours;
             this.restaurant.description = this.description;
-            if (this.restaurant.name && this.restaurant.address  && this.restaurant.hours && this.restaurant.description) {
+            console.log(typeof this.name);
+
+            if (this.restaurant.name && this.restaurant.address && this.restaurant.hours && this.restaurant.description) {
                 // pushes restaurant data to db 
                 db.collection('restaurants').add({
                     name: this.restaurant.name,
