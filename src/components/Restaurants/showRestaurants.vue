@@ -7,8 +7,8 @@
             <li><v-btn><router-link tag = a to = "/addRestaurantaccount"> Add Restaurant </router-link> </v-btn> </li>
                 <div v-for = "restaurants in filterRestaurants" :key="restaurants.id" class = "single-restaurant">
                    <router-link v-bind:to = "'/restaurants/' + restaurants.id"> <h2> {{ restaurants.name }} </h2> </router-link>
-                     <article> {{ restaurants.address }}</article>
                      <article> {{ restaurants.description }}</article>
+                     <article> {{ restaurants.address }}</article>
                      <article> {{ restaurants.hours }}</article>
                 </div>
         </div>
