@@ -7,7 +7,7 @@ import signIn from './components/users/signIn.vue'
 import signUp from './components/users/signUp.vue'
 
 export default [
-    { path: '/', component: FoodPages },
+    { path: '/', component: FoodPages, name: 'ExplorerPage' },
     { path: '/restaurants/:id', component: singleRestaurant },
     { path: '/Restaurants', component: showRestaurants },
     { path: '/addRestaurantaccount', component: addRestaurantaccount},
