@@ -76,7 +76,16 @@ export default {
            this.r_post.picture = this.imageData;
 
            if (this.r_post.food && this.r_post.price && this.r_post.description && this.imageData) {
-            
+                
+                //posts when photo is done uploading
+                db.collection('restaurants').doc(this.id).collection("posts").doc(this.r_post.food).set({
+                    food: this.r_post.food,
+                    price: this.r_post.price,
+                    description: this.r_post.description
+                }).catch(err => {
+                        console.log(err)
+                })
+
             var storageRef = firebase.storage().ref();
             var metadata = {
                 contentType: 'image/jpeg'
@@ -124,16 +133,7 @@ export default {
                                 this.picture = downloadURL;
                                 console.log('File available at', downloadURL);
                                 this.r_post.picture = this.picture;
-                                 
-                                //posts when photo is done uploading
-                                db.collection('restaurants').doc(this.id).collection("posts").doc(this.r_post.food).set({
-                                     picture: this.r_post.picture,
-                                     food: this.r_post.food,
-                                     price: this.r_post.price,
-                                     description: this.r_post.description
-                                }).catch(err => {
-                                    console.log(err)
-                                })
+
 
                         });
                     });
