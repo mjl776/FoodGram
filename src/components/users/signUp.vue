@@ -65,6 +65,8 @@ export default {
                                 username: this.account.username,
                                 user_id: cred.user.uid
                             })
+                        }).then(() => {
+                            this.$router.push({name: 'ExplorerPage'})
                         })
                         .catch(err=> {
                             console.log(err);
