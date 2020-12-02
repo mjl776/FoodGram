@@ -1,7 +1,6 @@
 <template>
  <form class = "restaurants" @submit.prevent = "post" >
         <h1> Add Restaurant Information</h1>
-
         <p class = "add_photo">
             <input label = "Profile Photo" type = "file" @change= "onFileSelected">           
         </p>
