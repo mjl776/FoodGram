@@ -1,24 +1,26 @@
 <template>
-    <div class= 'container'>
+<div class = "outside-border"> 
+    <div class= 'border'>
         <form class = "sign-in-form" @submit.prevent= "post">
+            <p>
+                 <v-text-field label="Username"
+                    v-model="username"> 
+                 </v-text-field> 
+            <p>      
 
             <p>
-                <label for = "username" > Username: </label>      
-                <input id = "username" v-model="username"> 
-            </p>
-            
+                <v-text-field label="Password"
+                    v-model="password"> 
+                </v-text-field>
             <p>
-                <label for = "password" > Password: </label>      
-                <input id = "password" v-model="password"> 
-            <p>
-
-                <v-btn><input type = "submit" value = "Submit"> </v-btn>
+                <v-btn><input type = "submit" value = "Sign In"> </v-btn>
             </p>  
         </form> 
         <div class ="sign-up-redirect"> 
             <li> <v-btn><router-link tag = a to = "/Accounts/sign-up">  Sign up  </router-link></v-btn> </li>
         </div>
     </div>
+</div>
 </template>
 
 <script>
@@ -44,6 +46,19 @@ export default {
 
 <style scoped>
 
+    .outside-border {
+        padding: 20px;
+    }
+
+    .border {
+        margin: auto;
+        width: 40%;        
+        padding: 30px;
+        text-align: center;
+        border: 1px solid black;
+        background-color: white;
+    }
+
     .sign-in-form {
         font-size: 20px;
         text-decoration: none;
@@ -52,13 +67,6 @@ export default {
     .sign-up-redirect {
         font-size: 20px;
         text-transform: uppercase;
-    }
-
-    .container {
-        margin: auto;
-        width: 50%;        
-        padding: 30px;
-        text-align: center;
     }
 
     li {
