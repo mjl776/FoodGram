@@ -1,24 +1,28 @@
 <template>
-    <form class = "sign-up-form" @submit.prevent= "signup">
-        <p>
-          <v-text-field label="email"
-            v-model="email"> 
-            </v-text-field>
-        </p>
+    <div class ="outside-border">
+        <div class= "border"> 
+            <form class = "sign-up-form" @submit.prevent= "signup">
+                <p>
+                <v-text-field label="Email"
+                    v-model="email"> 
+                    </v-text-field>
+                </p>
 
-        <p>
-            <v-text-field label="username"
-            v-model="username"> 
-            </v-text-field>
-        </p>
-        <p>
-            <v-text-field label="password"
-            v-model="password"> 
-            </v-text-field>
-        <p>
-           <v-btn type = "submit" value = "signup"> Sign up </v-btn>
-        </p>  
-    </form> 
+                <p>
+                    <v-text-field label="Username"
+                    v-model="username"> 
+                    </v-text-field>
+                </p>
+                <p>
+                    <v-text-field label="Password"
+                    v-model="password"> 
+                    </v-text-field>
+                <p>
+                <v-btn type = "submit" value = "signup"> Sign up </v-btn>
+                </p>  
+            </form> 
+        </div>
+    </div>
 </template>
 
 <script>
@@ -87,10 +91,16 @@ export default {
 </script>
 
 <style scoped>
+
+    .outside-border {
+        padding: 20px;
+    }
+
     .sign-up-form {
+        border: 1px solid black;
         margin: auto;
         width: 50%;        
-        padding: 4px;
+        padding: 6px;
         text-align: center;
         font-size: 30px;
         background-color: white;
