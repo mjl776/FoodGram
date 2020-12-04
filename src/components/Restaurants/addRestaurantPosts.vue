@@ -4,22 +4,19 @@
         <h1> Add Post Information</h1>
 
         <p>
-            <input type = "file" @change= "onFileSelected">           
+            <input type = "file" @change= "onFileSelected" placeholder="Photo">           
         </p>
       
         <p>
-           <label for = "Food" > Food: </label>      
-           <input id = "Food" v-model="food">
+           <input id = "Food" v-model="food" placeholder="Food">
         </p>
 
         <p>
-            <label for = "Price" > Price: </label>      
-            <input id = "Price" v-model="price">
+            <input id = "Price" v-model="price" placeholder="Price">
         </p>
 
         <p>    
-            <label for = "Description" > Description: </label>      
-            <input id = "Description" v-model="description">
+            <input id = "Description" v-model="description" placeholder="Description">
         </p> 
            
         <p>

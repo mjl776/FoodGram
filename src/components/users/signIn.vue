@@ -3,19 +3,18 @@
     <div class= 'border'>
         <form class = "sign-in-form" @submit.prevent= "post">
             <p>
-                <label for = "username" > Username: </label>      
-                <input id = "username" v-model="username"> 
+                <input id = "username" v-model="username" placeholder="Username"> 
             </p>
             
             <p>
-                <label for = "password" > Password: </label>      
-                <input id = "password" v-model="password"> 
+                <input id = "password" v-model="password" placeholder="Password"> 
             <p>
                 <input type = "submit" value = "Sign In"> 
             </p>  
         </form> 
         <div class ="sign-up-redirect"> 
-            <li> <button><router-link tag = a to = "/Accounts/sign-up">  Sign up  </router-link> </button></li>
+            <label for="sign-up"> New to FoodGram? </label>
+            <li> <button class = "button"><router-link tag = a to = "/Accounts/sign-up">  Sign up  </router-link> </button></li>
         </div>
     </div>
 </div>
@@ -50,7 +49,7 @@ export default {
 
     .border {
         margin: auto;
-        width: 40%;        
+        width: 30%;        
         padding: 30px;
         text-align: center;
         border: 1px solid black;
@@ -63,8 +62,8 @@ export default {
     }
 
     .sign-up-redirect {
-        font-size: 20px;
-        text-transform: uppercase;
+        font-size: 14px;
+        color: grey;;
     }
 
     li {
@@ -82,6 +81,10 @@ export default {
 
     a:hover {
         color: turquoise;
+    }
+
+    .button {
+        color: blue;
     }
  
 

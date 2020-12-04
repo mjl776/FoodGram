@@ -118,8 +118,10 @@ a:hover {
 }    
 
 .post-button {
-        background-color:lightblue;
-        color: black;
+    background-color:lightblue;
+    color: black;
+    width: 150px;
+    height: 40px;
 }
 
 </style>
