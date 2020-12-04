@@ -16,7 +16,7 @@
                     <label for = "password" > Password: </label>      
                     <input id = "password" v-model="password"> 
                 <p>
-                    <input type = "submit" value = "signup"/>
+                    <input type = "submit" value = "Sign up"/>
                 </p>  
             </form> 
         </div>

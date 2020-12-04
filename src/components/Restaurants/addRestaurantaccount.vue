@@ -27,7 +27,7 @@
         <p>
 
         <p>
-            <input type = "submit" value = "Post">  
+            <input type = "submit" value = "Post" class = "post-button">  
         </p>  
         
     </form>
@@ -213,6 +213,11 @@ export default {
         padding: 20px;
         font-family: Georgia;
         text-align: left;
+    }
+
+    .post-button {
+        background-color:lightblue;
+        color: black;
     }
 
 </style>
