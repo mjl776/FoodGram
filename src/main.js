@@ -3,8 +3,6 @@ import App from './App.vue'
 import axios from 'axios'
 import VueRouter from 'vue-router'
 import Routes from './routes'
-import vuetify from './plugins/vuetify';
-
 
 Vue.config.productionTip = false
 Vue.use(VueRouter);
@@ -21,6 +19,5 @@ export const EventBus = new Vue();
 
 new Vue({
   render: h => h(App),
-  vuetify,
   router: router
 }).$mount('#app')
