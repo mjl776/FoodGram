@@ -4,7 +4,7 @@
         <h1> Restaurants </h1>
 <input type = "text" v-model="search" class = "text-box" placeholder ="Search Restaurants..."/>            
 
-<li><button> <router-link tag = a to = "/addRestaurantaccount"> Add Restaurant </router-link> </button> </li>
+<li><button class = "post-button"> <router-link tag = a to = "/addRestaurantaccount"> Add Restaurant </router-link> </button> </li>
                 <div v-for = "restaurants in filterRestaurants" :key="restaurants.id" class = "border"> 
                     <div class = "restaurant-border">
                         <div class ="restaurant">
@@ -116,5 +116,10 @@ a:hover {
     padding: 5px;
 
 }    
+
+.post-button {
+        background-color:lightblue;
+        color: black;
+}
 
 </style>
