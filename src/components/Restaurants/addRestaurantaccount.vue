@@ -8,22 +8,18 @@
         </p>
 
         <p>
-            <label for = "Restaurant_name"> Restaurant name: </label>
-            <input id = "Restaurant_name" v-model="name">
+            <input id = "Restaurant_name" v-model="name" placeholder="Restaurant Name">
         </p>
 
         <p>
-            <label for = "Address" > Address: </label>      
-            <input id = "Address" v-model="address">
+            <input id = "Address" v-model="address" placeholder="Address">
         </p>
         
          <p>
-              <label for = "hours" > Hours of operation: </label>      
-               <textarea id = "hours" v-model="hours"></textarea>
+            <textarea id = "hours" v-model="hours" placeholder="Hours of operation"></textarea>
         </p> 
         <p>
-            <label for = "description" > Description: </label>      
-            <textarea id = "decription" v-model="description"></textarea>
+            <textarea id = "decription" v-model="description" placeholder="Description"></textarea>
         <p>
 
         <p>
@@ -218,6 +214,9 @@ export default {
     .post-button {
         background-color:lightblue;
         color: black;
+        width: 150px;
+        height: 40px;
+        font-size: 20px;
     }
 
 </style>

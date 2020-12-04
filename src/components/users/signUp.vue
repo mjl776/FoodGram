@@ -3,20 +3,17 @@
         <div class= "border"> 
             <form class = "sign-up-form" @submit.prevent= "signup">
                 <p>
-                    <label for = "email" > Email: </label>      
-                    <input id = "email" v-model="email"> 
+                    <input id = "email" v-model="email" placeholder ="email"> 
                 </p>
 
-                <p>
-                    <label for = "username" > Username: </label>      
-                    <input id = "username" v-model="username"> 
+                <p>     
+                    <input id = "username" v-model="username" placeholder="username"> 
                 </p>
                 
                 <p>
-                    <label for = "password" > Password: </label>      
-                    <input id = "password" v-model="password"> 
+                    <input id = "password" v-model="password" placeholder="password"> 
                 <p>
-                    <input type = "submit" value = "Sign up"/>
+                    <input type = "submit" value = "Sign up" class = "button"/>
                 </p>  
             </form> 
         </div>
@@ -99,10 +96,15 @@ export default {
     .sign-up-form {
         border: 1px solid black;
         margin: auto;
-        width: 50%;        
-        padding: 6px;
+        width: 30%;        
+        padding: 2px;
         text-align: center;
-        font-size: 30px;
+        font-size: 20px;
         background-color: white;
+    }
+    .button {
+        width: 150px;
+        height: 40px;
+        font-size: 15px;
     }
 </style>
