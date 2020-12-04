@@ -7,7 +7,7 @@
                             {{ restaurants.name }}
                         </div>
                     </header>
-                    <v-img :src= "post.picture" class="post_pic"> </v-img>
+                    <img :src= "post.picture" class="post_pic"/>
                     <h2>  {{ post.food }} </h2> 
                     <article> {{ "$" + post.price }}</article>
                     <article> {{ post.description }}</article>

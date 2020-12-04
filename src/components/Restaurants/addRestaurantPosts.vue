@@ -8,30 +8,25 @@
         </p>
       
         <p>
-            <v-text-field
-                label="Food"
-                v-model="food">
-            </v-text-field>
+           <label for = "Food" > Food: </label>      
+           <input id = "Food" v-model="food">
         </p>
 
         <p>
-            <v-text-field
-                label="Price"
-                v-model="price">
-            </v-text-field>
+            <label for = "Price" > Price: </label>      
+            <input id = "Price" v-model="price">
         </p>
 
         <p>    
-            <v-textarea
-                label="Description"
-                v-model="description">
-            </v-textarea>
+            <label for = "Description" > Description: </label>      
+            <input id = "Description" v-model="description">
         </p> 
            
         <p>
-           <v-btn type = "submit" value = "post" > Post </v-btn>
+            <input type = "submit" value = "post">  
         </p>  
     </form>
+  
 </template>
 
 <script>

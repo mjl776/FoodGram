@@ -3,21 +3,19 @@
     <div class= 'border'>
         <form class = "sign-in-form" @submit.prevent= "post">
             <p>
-                 <v-text-field label="Username"
-                    v-model="username"> 
-                 </v-text-field> 
-            <p>      
-
+                <label for = "username" > Username: </label>      
+                <input id = "username" v-model="username"> 
+            </p>
+            
             <p>
-                <v-text-field label="Password"
-                    v-model="password"> 
-                </v-text-field>
+                <label for = "password" > Password: </label>      
+                <input id = "password" v-model="password"> 
             <p>
-                <v-btn><input type = "submit" value = "Sign In"> </v-btn>
+                <input type = "submit" value = "Sign In"> 
             </p>  
         </form> 
         <div class ="sign-up-redirect"> 
-            <li> <v-btn><router-link tag = a to = "/Accounts/sign-up">  Sign up  </router-link></v-btn> </li>
+            <li> <button><router-link tag = a to = "/Accounts/sign-up">  Sign up  </router-link> </button></li>
         </div>
     </div>
 </div>

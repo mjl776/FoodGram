@@ -5,8 +5,7 @@
             <li> <router-link tag = "a" to = "/"> Explorer Page</router-link></li>
             <li><router-link tag = "a" to = "/Restaurants"> Restaurants </router-link> </li>
             <li> <router-link tag = "a" to = "/Accounts"> Accounts </router-link> </li>
-            <v-text-field outline label = "Search..." class = "text-box"></v-text-field>
-
+            <input type = "text" class = "text-box" placeholder ="Search Restaurants..."/>            
         </ul>
         </nav>
     </div>
@@ -35,7 +34,7 @@ export default {
     .text-box {
         float: left;
         padding: 8px;
-        border: none;
+        border: 1px solid black;
         margin-top: 17px;
         margin-right: 16px;
         font-size: 17px;

@@ -2,12 +2,13 @@
 
     <div class = "container"> 
         <h1> Restaurants </h1>
-            <v-text-field type = "text" outline label = "Search Restaurants..." v-model="search" class = "text-box"></v-text-field>
-            <li><v-btn><router-link tag = a to = "/addRestaurantaccount"> Add Restaurant </router-link> </v-btn> </li>
+<input type = "text" v-model="search" class = "text-box" placeholder ="Search Restaurants..."/>            
+
+<li><button> <router-link tag = a to = "/addRestaurantaccount"> Add Restaurant </router-link> </button> </li>
                 <div v-for = "restaurants in filterRestaurants" :key="restaurants.id" class = "border"> 
                     <div class = "restaurant-border">
                         <div class ="restaurant">
-                            <v-img :src= "restaurants.profile_photo" class= "prof_pic"> </v-img>
+                            <img :src= "restaurants.profile_photo" class= "prof_pic"/>
                             <div class = "rest-text">
                                 <router-link v-bind:to = "'/restaurants/' + restaurants.id"> <h2> {{ restaurants.name }} </h2> </router-link>
                                 <article> {{ restaurants.description }}</article>
@@ -84,7 +85,6 @@ export default {
     height: 310px;
     width: 400px;
     float: right;
-    padding-left: 40px;
 }
 
 .clear {

@@ -3,22 +3,20 @@
         <div class= "border"> 
             <form class = "sign-up-form" @submit.prevent= "signup">
                 <p>
-                <v-text-field label="Email"
-                    v-model="email"> 
-                    </v-text-field>
+                    <label for = "email" > Email: </label>      
+                    <input id = "email" v-model="email"> 
                 </p>
 
                 <p>
-                    <v-text-field label="Username"
-                    v-model="username"> 
-                    </v-text-field>
+                    <label for = "username" > Username: </label>      
+                    <input id = "username" v-model="username"> 
                 </p>
+                
                 <p>
-                    <v-text-field label="Password"
-                    v-model="password"> 
-                    </v-text-field>
+                    <label for = "password" > Password: </label>      
+                    <input id = "password" v-model="password"> 
                 <p>
-                <v-btn type = "submit" value = "signup"> Sign up </v-btn>
+                    <input type = "submit" value = "signup"/>
                 </p>  
             </form> 
         </div>

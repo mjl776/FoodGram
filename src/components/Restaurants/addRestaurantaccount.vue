@@ -1,4 +1,6 @@
 <template>
+ <div class ="outside-border">
+ <div class= "border"> 
  <form class = "restaurants" @submit.prevent = "post" >
         <h1> Add Restaurant Information</h1>
         <p class = "add_photo">
@@ -6,37 +8,31 @@
         </p>
 
         <p>
-           <v-text-field
-                label="Restaurant Name"
-                v-model="name"
-                >
-            </v-text-field>
+            <label for = "Restaurant_name"> Restaurant name: </label>
+            <input id = "Restaurant_name" v-model="name">
         </p>
 
         <p>
-            <v-text-field
-                label="Address"
-                v-model="address">
-            </v-text-field>
+            <label for = "Address" > Address: </label>      
+            <input id = "Address" v-model="address">
         </p>
         
          <p>
-            <v-text-field
-                label="Hours of operation"
-                v-model="hours">
-            </v-text-field>
-        </p>
+              <label for = "hours" > Hours of operation: </label>      
+               <textarea id = "hours" v-model="hours"></textarea>
+        </p> 
         <p>
-             <v-textarea
-                label="Description"
-                v-model="description">
-            </v-textarea>
+            <label for = "description" > Description: </label>      
+            <textarea id = "decription" v-model="description"></textarea>
         <p>
+
         <p>
-           <v-btn type = "submit" value = "submit"> Submit </v-btn>
+            <input type = "submit" value = "Post">  
         </p>  
         
     </form>
+    </div>
+    </div>
 </template>
 
 
@@ -193,6 +189,18 @@ export default {
 
 <style scoped>
 
+    .outside-border {
+        padding: 20px;
+    }
+
+    .border {
+        margin: auto;
+        width: 40%;        
+        text-align: left;
+        border: 1px solid black;
+        background-color: white;
+    }
+
     .add_photo {
         margin: left;
         width: 50%;
@@ -204,7 +212,7 @@ export default {
         width: 50%;
         padding: 20px;
         font-family: Georgia;
-        text-align: center;
+        text-align: left;
     }
 
 </style>
