@@ -12,7 +12,7 @@ export default [
     { path: '/Restaurants', component: showRestaurants },
     { path: '/addRestaurantaccount', component: addRestaurantaccount},
     { path: '/Restaurants/:id/addRestaurantposts', component: addRestaurantPosts},
-    { path: '/Accounts', component: signIn},
+    { path: '/Accounts/sign-in', component: signIn, name: 'SignIn'},
     { path: '/Accounts/sign-up', component: signUp}
 
 ]

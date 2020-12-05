@@ -1,11 +1,10 @@
 <template>
 <div class = "outside-border"> 
     <div class= 'border'>
-        <form class = "sign-in-form" @submit.prevent= "post">
+        <form class = "sign-in-form" @submit.prevent= "login">
             <p>
-                <input id = "username" v-model="username" placeholder="Username"> 
+                <input id = "email" v-model="email" placeholder="Email"> 
             </p>
-            
             <p>
                 <input id = "password" v-model="password" placeholder="Password"> 
             <p>
@@ -21,21 +20,26 @@
 </template>
 
 <script>
+import firebase from '../../firebase/init.js'
 export default {
     name:'signIn',
     data() {
         return {
-            username: null,
+            email: null,
             password: null, 
-            email: null,  
-            account: {
-                username: null,
-                password: null, 
-                email: null
-            }
         }
     },
     methods: {
+        login() {
+            if (this.email && this.password) {
+                firebase.auth().signInWithEmailAndPassword(this.email,this.password).then(()=> {
+                    this.$router.push({name: 'ExplorerPage'})
+                })
+            }
+            else {
+                console.log("email or password field is not filled in")
+            }
+        }
     }
 
 }

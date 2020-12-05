@@ -10,12 +10,15 @@
 <script>
 
 import showRestaurants from './Restaurants/showRestaurants.vue'
-
+import firebase from '../firebase/init.js'
 export default {
     name: 'FoodPages',
     components: {
         showRestaurants
     },
+    mounted() {
+        console.log(firebase.auth().currentUser);
+    }
 };
 
 </script>

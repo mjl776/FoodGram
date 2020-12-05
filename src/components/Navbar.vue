@@ -4,7 +4,8 @@
         <ul>
             <li> <router-link tag = "a" to = "/"> Explorer Page</router-link></li>
             <li><router-link tag = "a" to = "/Restaurants"> Restaurants </router-link> </li>
-            <li> <router-link tag = "a" to = "/Accounts"> Accounts </router-link> </li>
+            <li> <router-link tag = "a" to = "/Accounts/sign-in"> Sign in </router-link> </li>
+            <li> <a tag = "a" @click= "logout"> Sign Out </a> </li>
             <input type = "text" class = "text-box" placeholder ="Search Restaurants..."/>            
         </ul>
         </nav>
@@ -12,8 +13,22 @@
 </template>
 
 <script>
+import firebase from '../firebase/init'
 export default {
-    name: 'Navbar'
+    name: 'Navbar',
+    data() {
+        return {
+
+        }
+    }, 
+    methods: {
+        logout() {
+            firebase.auth().signOut().then(()=> {
+                this.$router.push({ name: 'SignIn'})
+            })
+        }
+    }
+
 }
 
 </script>
