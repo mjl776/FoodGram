@@ -41,9 +41,10 @@ export default {
                 let restaurant = doc.data();
                 restaurant.id = doc.id;
                 this.restaurants.push(restaurant);
-                console.log(this.restaurants.name)
             });
         });
+    },
+    methods: {
     },
     computed: {
     },
