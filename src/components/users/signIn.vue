@@ -2,6 +2,11 @@
 <div class = "outside-border"> 
     <div class= 'border'>
         <form class = "sign-in-form" @submit.prevent= "login">
+
+            <p class = "login-in-title">
+                Log in to FoodGram
+            </p>
+
             <p>
                 <input id = "email" v-model="email" placeholder="Email"> 
             </p>
@@ -60,6 +65,10 @@ export default {
         background-color: white;
     }
 
+    .login-in-title {
+        color:skyblue
+    }
+
     .sign-in-form {
         font-size: 20px;
         text-decoration: none;
@@ -81,10 +90,6 @@ export default {
     a {
         text-decoration: none;
         color:black;
-    }
-
-    a:hover {
-        color: turquoise;
     }
 
     .button {
