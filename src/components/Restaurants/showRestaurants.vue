@@ -112,14 +112,13 @@ a:hover {
     width: 200px;
     height: 30px;
     font-size: 15px;
-    text-align: center;
     display: inline-block;
     padding: 5px;
 
 }    
 
 .post-button {
-    background-color:lightblue;
+    background-color:SkyBlue;
     color: black;
     width: 150px;
     height: 40px;

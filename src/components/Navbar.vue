@@ -76,7 +76,7 @@ export default {
     }
 
     nav a:hover {
-        color: turquoise
+        color: black
     }
     
     nav a::before {
