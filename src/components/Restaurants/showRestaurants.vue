@@ -57,8 +57,9 @@ export default {
 .container {
     width: 750px;
     font-size: 22px;
-    color:black;
+    color:hsl(0, 0%, 0%);
     margin: auto;
+	font-family: Times, serif;
 }
 
 .border {
@@ -100,7 +101,6 @@ li {
 
 a {
     text-decoration: none;
-    text-transform: uppercase;
     color:black;
 }
 
