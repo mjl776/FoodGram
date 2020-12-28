@@ -1,33 +1,40 @@
 <template>
- <div class ="outside-border">
- <div class= "border"> 
- <form class = "restaurants" @submit.prevent = "post" >
-        <h1> Add Restaurant Information</h1>
-        <p class = "add_photo">
-            <input label = "Profile Photo" type = "file" @change= "onFileSelected">           
-        </p>
+    <div class = "container">   
+        <div class ="outside-border" v-if="business_check" >
+            <div class= "border"> 
+                <form class = "restaurants" @submit.prevent = "post" >
+                        <h1> Add Restaurant Information</h1>
+                        <p>
+                            <label class = "profile-photo-text"> Profile Photo </label>
+                            <input label = "Profile Photo" type = "file" @change= "onFileSelected">           
+                        </p>
 
-        <p>
-            <input id = "Restaurant_name" v-model="name" placeholder="Restaurant Name">
-        </p>
+                        <p>
+                            <input id = "Restaurant_name" v-model="name" placeholder="Restaurant Name">
+                        </p>
 
-        <p>
-            <input id = "Address" v-model="address" placeholder="Address">
-        </p>
-        
-         <p>
-            <textarea id = "hours" v-model="hours" placeholder="Hours of operation"></textarea>
-        </p> 
-        <p>
-            <textarea id = "decription" v-model="description" placeholder="Description"></textarea>
-        <p>
+                        <p>
+                            <input id = "Address" v-model="address" placeholder="Address">
+                        </p>
+                        
+                        <p>
+                            <textarea id = "hours" v-model="hours" placeholder="Hours of operation"></textarea>
+                        </p> 
+                        <p>
+                            <textarea id = "decription" v-model="description" placeholder="Description"></textarea>
+                        <p>
 
-        <p>
-            <input type = "submit" value = "Post" class = "post-button">  
-        </p>  
-        
-    </form>
-    </div>
+                        <p>
+                            <input type = "submit" value = "Post" class = "post-button">  
+                        </p>   
+                </form>
+            </div>
+        </div>
+
+        <div class = "business-account-converter">
+            
+        </div>
+
     </div>
 </template>
 
@@ -41,10 +48,12 @@ export default {
     data() {
         return {
 
+            business_check: false,
+
             profilephoto: "",
             selectedFile: null,
             imageData: null,
-            
+
               name: "", 
               address: "",
               hours: "",
@@ -57,7 +66,26 @@ export default {
                 slug: "",
                 description: "",
             }
+
+
+
         }
+    },
+
+     created() {
+        var db = firebase.firestore();
+        var user = firebase.auth().currentUser;
+        db.collection('user').where("user_id", "==", user.uid).get().then(
+        snapshot => {
+            snapshot.forEach( doc => {
+                let users = doc.data();
+                users.id = doc.id;
+                if (users.business_account== true) {
+                    this.business_check= true;
+                }
+            });
+        });
+
     },
     methods: {
 
@@ -197,11 +225,14 @@ export default {
         background-color: white;
     }
 
-    .add_photo {
-        margin: left;
-        width: 50%;
-        padding: 20px;
+    .profile-photo-text {
+        color: grey;
+        font-size: 14px;
     }
+
+    /*
+    add a add_photo class later to adjust margin of the add photo box
+    */
 
     .restaurants {
         margin: auto;
