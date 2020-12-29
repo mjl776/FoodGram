@@ -11,6 +11,10 @@
                 </p>
                 
                 <p>
+                    <input id = "name" v-model="name" placeholder ="name"> 
+                </p>
+
+                <p>
                     <input id = "password" v-model="password" placeholder="password"> 
                 </p>
 
@@ -39,6 +43,7 @@ export default {
             username: null,
             password: null, 
             email: null,  
+            name: null,
             feedback: null,
             business_account: false,
             slug: null,
@@ -46,6 +51,7 @@ export default {
                 username: null,
                 password: null, 
                 email: null,
+                name: null,
                 business_account: false,
                 slug: null,
             }
@@ -54,8 +60,9 @@ export default {
     methods: {
 
         signup: function() {
-            this.account.username = this.name
+            this.account.username = this.username
             this.account.password = this.password
+            this.account.name = this.name
             this.account.email = this.email
             this.account.business_account = this.business_account
 
@@ -75,6 +82,7 @@ export default {
                         firebase.auth().createUserWithEmailAndPassword(this.account.email, this.account.password).then(cred=>{
                             ref.set({
                                 username: this.account.username,
+                                name: this.account.name,
                                 user_id: cred.user.uid,
                                 business_account: this.account.business_account
                             })
@@ -95,6 +103,7 @@ export default {
             // reseting fields 
             this.username = null;
             this.password = null;
+            this.name = null;
             this.email = null; 
             this.business_account = false;
         }
