@@ -8,6 +8,14 @@
                             <label class = "profile-photo-text"> Profile Photo </label>
                             <input label = "Profile Photo" type = "file" @change= "onFileSelected">           
                         </p>
+                        
+                        <p>
+                            <input id = "owner_first_name" v-model="owner_first_name" placeholder="First Name">
+                        </p>
+
+                        <p>
+                            <input id = "owner_last_name" v-model="owner_last_name" placeholder="Last Name">
+                        </p>
 
                         <p>
                             <input id = "Restaurant_name" v-model="name" placeholder="Restaurant Name">
@@ -22,8 +30,8 @@
                         </p> 
                         <p>
                             <textarea id = "decription" v-model="description" placeholder="Description"></textarea>
-                        <p>
-
+                        </p>
+                            
                         <p>
                             <input type = "submit" value = "Post" class = "post-button">  
                         </p>   
@@ -32,7 +40,7 @@
         </div>
 
         <div class = "business-account-converter">
-            
+            <!-- Write code to add business acount function to account if account does not have a business account -->
         </div>
 
     </div>
@@ -53,12 +61,16 @@ export default {
             profilephoto: "",
             selectedFile: null,
             imageData: null,
-
+              
+              owner_first_name: "",
+              owner_last_name: "",
               name: "", 
               address: "",
               hours: "",
               description: "",
             restaurant: {
+                owner_first_name: "",
+                owner_last_name: "",
                 profilephoto: "",
                 name: "", 
                 address: "",
@@ -96,6 +108,11 @@ export default {
         },
 
         post: function() {
+
+            // assign id of current user to account for security purposes
+            var user = firebase.auth().currentUser;
+            var user_ID = user.uid;
+
             // intialize db 
             var db = firebase.firestore()
             console.log(this.id)
@@ -108,6 +125,8 @@ export default {
                 lower: true
             })
 
+            this.restaurant.owner_first_name = this.owner_first_name;
+            this.restaurant.owner_last_name = this.owner_first_name;
             this.restaurant.address = this.address;
             this.restaurant.hours = this.hours;
             this.restaurant.description = this.description;
@@ -153,6 +172,7 @@ export default {
                             case 'storage/canceled':
                             // User canceled the upload
                             break;
+
                         case 'storage/unknown':
                             // Unknown error occurred, inspect error.serverResponse
                             break;
@@ -172,6 +192,7 @@ export default {
                                         hours: this.restaurant.hours, 
                                         description: this.restaurant.description,
                                         slug: this.restaurant.slug,
+                                        user_id: user_ID
                                     // catches errors
                                     }).catch(err=> {
                                         console.log(err);
@@ -179,6 +200,8 @@ export default {
 
                             });
                         });
+                        this.owner_first_name = null;
+                        this.owner_last_name = null; 
                         this.name = null;
                         this.address = null;
                         this.hours = null; 
