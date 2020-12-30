@@ -40,10 +40,10 @@ export default {
             price: "",
             description: "",
 
-            selectedFile: null,
+            uploadValue: null,
             imageData: null,
-            picture:"",
-
+            picture:"",  
+            
             r_post: {
                 food: "",
                 price: "",
@@ -52,11 +52,12 @@ export default {
             }
         }
     },
+
     methods: {
         onFileSelected(event) {
-            this.uploadValue=0;
-            this.picture = null;
-            this.imageData = event.target.files[0];  
+                this.uploadValue=0;
+                this.picture = null;
+                this.imageData = event.target.files[0];  
         },
 
         post: function () {
@@ -68,15 +69,6 @@ export default {
            this.r_post.picture = this.imageData;
 
            if (this.r_post.food && this.r_post.price && this.r_post.description && this.imageData) {
-                
-                //posts when photo is done uploading
-                db.collection('restaurants').doc(this.id).collection("posts").doc(this.r_post.food).set({
-                    food: this.r_post.food,
-                    price: this.r_post.price,
-                    description: this.r_post.description
-                }).catch(err => {
-                        console.log(err)
-                })
 
             var storageRef = firebase.storage().ref();
             var metadata = {
@@ -125,7 +117,15 @@ export default {
                                 this.picture = downloadURL;
                                 console.log('File available at', downloadURL);
                                 this.r_post.picture = this.picture;
-
+                                //posts when photo is done uploading
+                                db.collection('restaurants').doc(this.id).collection("posts").doc(this.r_post.food).set({
+                                    food: this.r_post.food,
+                                    price: this.r_post.price,
+                                    description: this.r_post.description,
+                                    picture_URL: this.r_post.picture
+                                }).catch(err => {
+                                        console.log(err)
+                                })
 
                         });
                     });
@@ -135,6 +135,7 @@ export default {
                     this.food = null;
                     this.description = null;
                     this.imageData = null;
+                    this.uploadValue= null;
 
            }
 

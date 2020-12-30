@@ -1,7 +1,8 @@
 <template>
     <div class = "container">
+        
         <div class = "single-restaurant"> 
-            <li v-if = "can_add_post"><button class = "add-post-button"> <router-link tag = a to = "/Restaurants/:id/addRestaurantposts"> Add Post </router-link> </button> </li>
+            <li v-if = "can_add_post"><button class = "add-post-button"> <router-link tag = a v-bind:to = "'/restaurants/' + this.id  +'/addRestaurantposts'"> Add Post </router-link> </button> </li>
             <div v-for = "post in filterPosts" :key="post.id" class = "post-border">
                 <div class = "post">
                     <header class = "post-header">
@@ -9,12 +10,12 @@
                             {{ restaurants.name }}
                         </div>
                     </header>
-                        <img :src= "post.picture" class="post_pic"/>
-                    <h2>  {{ post.food }} </h2> 
+                        <img :src= "post.picture_URL" class="post_pic"/>
+                        <h2>  {{ post.food }} </h2> 
                         <article> {{ "$" + post.price }}</article>
                         <article> {{ post.description }}</article>
-                    </div> 
-                </div>
+                </div> 
+            </div>
         </div>
     </div>
 </template>
@@ -68,6 +69,7 @@ export default {
 </script>
 
 <style scoped>
+
     .single-restaurant {
         display: block;
         margin-left: 50px;
@@ -84,13 +86,11 @@ export default {
          border: 1px solid black;
          background-color: white;
          width: 350px;
-
     }
 
     .post_pic {
-        padding: 10px;
         height: 275px;
-
+        width: 350px;
     }
 
     li {
@@ -113,13 +113,8 @@ export default {
         color: black;
         width: 150px;
         height: 40px;
-    }
-    .container {
-        width: 750px;
-        font-size: 22px;
-        color:hsl(0, 0%, 0%);
-        margin: auto;
-        font-family: Times, serif;
+        margin-left: 25px;
+
     }
     
 </style>
