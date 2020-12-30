@@ -192,7 +192,7 @@ export default {
                                         hours: this.restaurant.hours, 
                                         description: this.restaurant.description,
                                         slug: this.restaurant.slug,
-                                        user_id: user_ID
+                                        owner_ID: user_ID
                                     // catches errors
                                     }).catch(err=> {
                                         console.log(err);
