@@ -1,5 +1,7 @@
 <template>
-    <div class = "single-restaurant"> 
+    <div class = "container">
+        <div class = "single-restaurant"> 
+            <li v-if = "can_add_post"><button class = "add-post-button"> <router-link tag = a to = "/Restaurants/:id/addRestaurantposts"> Add Post </router-link> </button> </li>
             <div v-for = "post in filterPosts" :key="post.id" class = "post-border">
                 <div class = "post">
                     <header class = "post-header">
@@ -7,12 +9,13 @@
                             {{ restaurants.name }}
                         </div>
                     </header>
-                    <img :src= "post.picture" class="post_pic"/>
+                        <img :src= "post.picture" class="post_pic"/>
                     <h2>  {{ post.food }} </h2> 
-                    <article> {{ "$" + post.price }}</article>
-                    <article> {{ post.description }}</article>
-                </div> 
-            </div>
+                        <article> {{ "$" + post.price }}</article>
+                        <article> {{ post.description }}</article>
+                    </div> 
+                </div>
+        </div>
     </div>
 </template>
 
@@ -26,27 +29,32 @@ export default {
         return {
             id: this.$route.params.id,
             post: [],
-            restaurants: []
+            restaurants: [],
+            can_add_post: false
         }
     },
     created() {
+        var db = firebase.firestore();
+        var owner_ID = firebase.auth().currentUser.uid;
+        db.collection('restaurants').where("owner_ID", "==", owner_ID).get().then( ()=> {
+            this.can_add_post = true;
+        });
 
-       var db = firebase.firestore();
-       db.collection('restaurants').doc(this.id).get().then(
+        db.collection('restaurants').doc(this.id).get().then(
         doc => {
             let restaurant = doc.data();
             restaurant.id = doc.id;
             this.restaurants.push(restaurant);
         });
     
-      db.collection('restaurants').doc(this.id).collection('posts').get().then(
-        snapshot => {
-            snapshot.forEach( doc => {
-                let post = doc.data();
-                post.id = doc.id;
-                this.post.push(post);
-            });
-        });
+        db.collection('restaurants').doc(this.id).collection('posts').get().then(
+            snapshot => {
+                snapshot.forEach( doc => {
+                    let post = doc.data();
+                    post.id = doc.id;
+                    this.post.push(post);
+                });
+          });
 
     },
 
@@ -98,6 +106,20 @@ export default {
 
     a:hover {
         color: turquoise
+    }
+
+    .add-post-button {
+        background-color:SkyBlue;
+        color: black;
+        width: 150px;
+        height: 40px;
+    }
+    .container {
+        width: 750px;
+        font-size: 22px;
+        color:hsl(0, 0%, 0%);
+        margin: auto;
+        font-family: Times, serif;
     }
     
 </style>
