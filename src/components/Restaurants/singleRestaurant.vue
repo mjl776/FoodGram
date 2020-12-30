@@ -77,6 +77,13 @@ export default {
         padding: 30px;
     }
 
+    .post-header {
+        margin-right: 400px;
+        font-weight: bold;
+        font-size: 20px;
+        padding: 10px;
+    }
+
     .post-border {
         padding: 20px;
     }
@@ -85,12 +92,12 @@ export default {
          text-align: center;   
          border: 1px solid black;
          background-color: white;
-         width: 350px;
+         width: 554px;
     }
 
     .post_pic {
-        height: 275px;
-        width: 350px;
+        height: 500px;
+        width: 554px;
     }
 
     li {
