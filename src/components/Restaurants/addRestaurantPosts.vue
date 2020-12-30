@@ -36,6 +36,8 @@ export default {
         return {
             id: this.$route.params.id,
 
+            restaurant_name: "",
+
             food: "",
             price: "",
             description: "",
@@ -53,11 +55,21 @@ export default {
         }
     },
 
+    created() {
+        var db = firebase.firestore();
+        db.collection('restaurants').doc(this.id).get().then(
+        doc => {
+            let restaurant = doc.data();
+            restaurant.id = doc.id;
+            this.restaurant_name = restaurant.name;
+        });
+    },
+ 
     methods: {
         onFileSelected(event) {
-                this.uploadValue=0;
-                this.picture = null;
-                this.imageData = event.target.files[0];  
+            this.uploadValue=0;
+            this.picture = null;
+            this.imageData = event.target.files[0];  
         },
 
         post: function () {
@@ -81,7 +93,7 @@ export default {
                 // post folder for specific posts
                 var post_folder = this.r_post.food;
 
-                var uploadTask = storageRef.child(folder + '/' + post_folder + '/' + this.imageData.name).put(this.imageData, metadata);
+                var uploadTask = storageRef.child('restaurants' + '/' + folder + '/' + this.restaurant_name + '/' + 'posts' + '/' + post_folder + '/' + this.imageData.name).put(this.imageData, metadata);
                 uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, 
                 (snapshot) =>{
                     // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded

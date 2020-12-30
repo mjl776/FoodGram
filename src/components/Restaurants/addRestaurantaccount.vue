@@ -144,9 +144,9 @@ export default {
                     var dbref = db.collection('restaurants').doc(id)
                     console.log(id)
                     // post folder for specific posts
-                    var profile_photo = this.restaurant.name;
+                    var restaurant_name = this.restaurant.name;
 
-                    var uploadTask = storageRef.child('restaurants' + '/' + id + '/' + profile_photo + '/' + this.imageData.name).put(this.imageData, metadata);
+                    var uploadTask = storageRef.child('restaurants' + '/' + id + '/' + restaurant_name + '/' + 'Profile Photo' + '/' + this.imageData.name).put(this.imageData, metadata);
                     uploadTask.on(firebase.storage.TaskEvent.STATE_CHANGED, 
                     (snapshot) =>{
                         // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
