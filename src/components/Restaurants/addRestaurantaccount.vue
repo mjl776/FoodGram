@@ -26,7 +26,7 @@
                         </p>
                         
                         <p>
-                            <textarea id = "hours" v-model="hours" placeholder="Hours of operation"></textarea>
+                            <textarea id = "hours" v-model="hours" placeholder="Hours of Operation"></textarea>
                         </p> 
                         <p>
                             <textarea id = "decription" v-model="description" placeholder="Description"></textarea>
