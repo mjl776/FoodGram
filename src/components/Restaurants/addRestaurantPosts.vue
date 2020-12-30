@@ -171,5 +171,6 @@ export default {
         font-family: "Georgia";
         text-align: center;
     }
+    
 
 </style>
