@@ -20,7 +20,7 @@
 
                 <p>
                     <label class = "business-account"> Would you like a business account? </label>
-                    <input type="checkbox" id="checkbox" v-model = "business_account">
+                    <input type = "checkbox" id = "checkbox" v-model = "business_account">
                 </p>
 
                 <p>
