@@ -87,13 +87,14 @@ export default {
      created() {
         var db = firebase.firestore();
         var user = firebase.auth().currentUser;
-        db.collection('user').where("user_id", "==", user.uid).get().then(
+        db.collection('users').where("user_id", "==", user.uid).get().then(
         snapshot => {
             snapshot.forEach( doc => {
                 let users = doc.data();
                 users.id = doc.id;
                 if (users.business_account== true) {
                     this.business_check= true;
+                    this.username = users.id;
                 }
             });
         });
@@ -197,9 +198,17 @@ export default {
                                     }).catch(err=> {
                                         console.log(err);
                                     })
-
+                                    
+                                    // sets collection for bussinesses owned for the user
+                                     db.collection("users").doc(this.username).collection("businesses_owned").doc(id).set({
+                                        restaurant_name: restaurant_name,
+                                        address: this.restaurant.address
+                                    }).catch(err => {
+                                        console.log(err)
+                                    })
                             });
                         });
+
                         this.owner_first_name = null;
                         this.owner_last_name = null; 
                         this.name = null;
@@ -207,7 +216,12 @@ export default {
                         this.hours = null; 
                         this.description = null;
                         this.posts = null;
+
+
+
                 }
+
+
 
                 if (!this.imageData) {
                     console.log("ERROR: restaurant profile photo is not filled ")
