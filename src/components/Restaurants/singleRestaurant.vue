@@ -37,9 +37,17 @@ export default {
     created() {
         var db = firebase.firestore();
         var owner_ID = firebase.auth().currentUser.uid;
-        db.collection('restaurants').where("owner_ID", "==", owner_ID).get().then( ()=> {
-            this.can_add_post = true;
+        db.collection('restaurants').where("owner_ID", "==", owner_ID).get().then(
+            snapshot => {
+                snapshot.forEach( doc => {
+                let restaurant = doc.data();
+                restaurant.id = doc.id;
+                if (restaurant.owner_ID == owner_ID) {
+                    this.can_add_post= true;
+                }
+            });
         });
+
 
         db.collection('restaurants').doc(this.id).get().then(
         doc => {
