@@ -5,17 +5,17 @@
             <li v-if = "can_add_post"><button class = "add-post-button"> <router-link tag = a v-bind:to = "'/restaurants/' + this.id  +'/addRestaurantposts'"> Add Post </router-link> </button> </li>
             <div v-for = "post in filterPosts" :key="post.id" class = "post-border">
                 <div class = "post">
-                    <header id = "post-header">
-                        <div v-for = "restaurants in filterRestaurants" :key="restaurants.id">
-                            {{ restaurants.name }}
-                        </div>
+                    <header class = "post-header" v-for = "restaurants in filterRestaurants" :key="restaurants.id">
+                       <img :src = "restaurants.profile_photo" id = "prof_image" />
+                       <article id = "rest-name"> {{ restaurants.name }} </article>
                     </header>
-                        <img :src= "post.picture_URL" id = "post_pic"/>
-                        <img :src= "empty_heart" id = "empty_heart_pic"/>
-                        <div class = "post_info">
+                            <img :src= "post.picture_URL" id = "post_pic"/>
+                            <img :src= "empty_heart" id = "empty_heart_pic"/>
+                            <img :src= "empty_saved" id = "empty_saved_pic"/>
+                        <div class = "post_info" >
                             <article id = "food_name">  {{ post.food }} </article> 
                             <article id = "food_price"> {{ "$" + post.price }}</article>
-                            <article id = "food_description"> {{ post.description }}</article>
+                            <article id = "food_description"> {{  post.description }}</article>
                         </div>
                 </div> 
                 <div class = "clear"></div>
@@ -27,6 +27,7 @@
 <script>
 
 import emptyheart from '../../components/photos/empty_heart.png'
+import emptysaved from '../../components/photos/empty_saved.png'
 import searchMixin from '../../mixins/searchMixin'
 import firebase from '../../firebase/init'
 export default {
@@ -37,7 +38,8 @@ export default {
             post: [],
             restaurants: [],
             can_add_post: false,
-            empty_heart: emptyheart
+            empty_heart: emptyheart,
+            empty_saved: emptysaved,
         }
     },
     created() {
@@ -97,18 +99,26 @@ export default {
 
     .post {
          text-align: center;   
-         border: 1px solid black;
+         border: 1px solid lightgrey;
          background-color: white;
          width: 554px;
          height: 650px;
     }
 
-    #post-header {
-        float: left;
-        width: 130px;
-        font-weight: bold;
-        font-size: 20px;
+    .post-header {
         padding: 10px;
+    }
+
+    #rest-name {
+        float: right;
+        margin-right: 470px;
+        font-weight: bold;
+    }
+
+    #prof_image {
+        float: left;
+        height: 20px;
+        width: 20px;
     }
 
     #post_pic {
@@ -118,12 +128,38 @@ export default {
 
     #empty_heart_pic {
         float: left;
-        height: 40px;
-        width: 40px;
+        margin-top: 12px;
+        margin-left: 10px;
+        height: 20px;
+        width: 20px;
+    }
+
+    #empty_saved_pic {
+        float: right;
+        margin-top: 12px;
+        margin-right: 10px;
+        height: 20px;
+        width: 20px;
     }
 
     .post_info {
         margin-top: 40px;
+    }
+
+    #food_name {
+        font-weight: bold;
+        float: left;
+        margin-left: 10px;
+    }
+
+    #food_price {
+        float: right;
+        margin-right: 460px;
+    }
+
+    #food_description {
+        float: left;
+        margin-left: 10px;
     }
 
     .clear {
