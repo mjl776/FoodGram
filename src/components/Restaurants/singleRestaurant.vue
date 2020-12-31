@@ -5,16 +5,20 @@
             <li v-if = "can_add_post"><button class = "add-post-button"> <router-link tag = a v-bind:to = "'/restaurants/' + this.id  +'/addRestaurantposts'"> Add Post </router-link> </button> </li>
             <div v-for = "post in filterPosts" :key="post.id" class = "post-border">
                 <div class = "post">
-                    <header class = "post-header">
+                    <header id = "post-header">
                         <div v-for = "restaurants in filterRestaurants" :key="restaurants.id">
                             {{ restaurants.name }}
                         </div>
                     </header>
-                        <img :src= "post.picture_URL" class="post_pic"/>
-                        <h2>  {{ post.food }} </h2> 
-                        <article> {{ "$" + post.price }}</article>
-                        <article> {{ post.description }}</article>
+                        <img :src= "post.picture_URL" id = "post_pic"/>
+                        <img :src= "empty_heart" id = "empty_heart_pic"/>
+                        <div class = "post_info">
+                            <article id = "food_name">  {{ post.food }} </article> 
+                            <article id = "food_price"> {{ "$" + post.price }}</article>
+                            <article id = "food_description"> {{ post.description }}</article>
+                        </div>
                 </div> 
+                <div class = "clear"></div>
             </div>
         </div>
     </div>
@@ -22,6 +26,7 @@
 
 <script>
 
+import emptyheart from '../../components/photos/empty_heart.png'
 import searchMixin from '../../mixins/searchMixin'
 import firebase from '../../firebase/init'
 export default {
@@ -31,10 +36,12 @@ export default {
             id: this.$route.params.id,
             post: [],
             restaurants: [],
-            can_add_post: false
+            can_add_post: false,
+            empty_heart: emptyheart
         }
     },
     created() {
+
         var db = firebase.firestore();
         var owner_ID = firebase.auth().currentUser.uid;
         db.collection('restaurants').where("owner_ID", "==", owner_ID).get().then(
@@ -47,7 +54,6 @@ export default {
                 }
             });
         });
-
 
         db.collection('restaurants').doc(this.id).get().then(
         doc => {
@@ -85,13 +91,6 @@ export default {
         padding: 30px;
     }
 
-    .post-header {
-        margin-right: 400px;
-        font-weight: bold;
-        font-size: 20px;
-        padding: 10px;
-    }
-
     .post-border {
         padding: 20px;
     }
@@ -101,11 +100,34 @@ export default {
          border: 1px solid black;
          background-color: white;
          width: 554px;
+         height: 650px;
     }
 
-    .post_pic {
+    #post-header {
+        float: left;
+        width: 130px;
+        font-weight: bold;
+        font-size: 20px;
+        padding: 10px;
+    }
+
+    #post_pic {
         height: 500px;
         width: 554px;
+    }
+
+    #empty_heart_pic {
+        float: left;
+        height: 40px;
+        width: 40px;
+    }
+
+    .post_info {
+        margin-top: 40px;
+    }
+
+    .clear {
+        clear: both;
     }
 
     li {
@@ -131,5 +153,5 @@ export default {
         margin-left: 25px;
 
     }
-    
+
 </style>
