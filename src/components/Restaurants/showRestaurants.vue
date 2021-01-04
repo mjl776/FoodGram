@@ -4,8 +4,8 @@
         <h1> Restaurants </h1>
 <input type = "text" v-model="search" class = "text-box" placeholder ="Search Restaurants..."/>            
 
-<li><button class = "post-button"> <router-link tag = a to = "/addRestaurantaccount"> Add Restaurant </router-link> </button> </li>
-                <div v-for = "restaurants in filterRestaurants" :key="restaurants.id" class = "border"> 
+<li><button class = "add-rest-button"> <router-link tag = a to = "/addRestaurantaccount"> Add Restaurant </router-link> </button> </li>
+                <div v-for = "(restaurants) in filterRestaurants" :key="restaurants.id" class = "border"> 
                     <div class = "restaurant-border">
                         <div class ="restaurant">
                             <img :src= "restaurants.profile_photo" class= "prof_pic"/>
@@ -19,7 +19,8 @@
                         </div>
                     </div>
                 </div>
-        </div>
+       <li> <button @click = "showMore" id = "show-more-button" > Show More </button> </li>
+    </div>
 </template>
 
 <script>
@@ -30,6 +31,7 @@ export default {
     data() {
         return {
             restaurants: [],
+            limit: 2,
             search: ''
         }
     },
@@ -45,6 +47,9 @@ export default {
         });
     },
     methods: {
+        showMore() {
+            this.limit+=2;
+        }
     },
     computed: {
     },
@@ -117,7 +122,14 @@ a:hover {
 
 }    
 
-.post-button {
+.add-rest-button {
+    background-color:SkyBlue;
+    color: black;
+    width: 150px;
+    height: 40px;
+}
+
+#show-more-button {
     background-color:SkyBlue;
     color: black;
     width: 150px;

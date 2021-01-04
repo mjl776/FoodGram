@@ -17,7 +17,7 @@ export default {
         showRestaurants
     },
     mounted() {
-        console.log(firebase.auth().currentUser);
+        console.log(firebase.auth().currentUser.email);
     }
 };
 
