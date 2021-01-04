@@ -5,7 +5,7 @@
             <li v-if = "can_add_post"><button class = "add-post-button"> <router-link tag = a v-bind:to = "'/restaurants/' + this.id  +'/addRestaurantposts'"> Add Post </router-link> </button> </li>
             <div v-for = "post in filterPosts" :key="post.id" class = "post-border">
                 <div class = "post">
-                    <header class = "post-header" v-for = "restaurants in filterRestaurants" :key="restaurants.id">
+                    <header class = "post-header" v-for = "restaurants in showRestaurants" :key="restaurants.id">
                        <img :src = "restaurants.profile_photo" id = "prof_image" />
                        <article id = "rest-name"> {{ restaurants.name }} </article>
                     </header>
@@ -13,9 +13,14 @@
                             <img :src= "empty_heart" id = "empty_heart_pic"/>
                             <img :src= "empty_saved" id = "empty_saved_pic"/>
                         <div class = "post_info" >
-                            <article id = "food_name">  {{ post.food }} </article> 
-                            <article id = "food_price"> {{ "$" + post.price }}</article>
-                            <article id = "food_description"> {{  post.description }}</article>
+                            <article id = "food_price_and_name"> 
+                                <span id = "food_name"> {{ post.food }} </span> 
+                                <span id= "food_price"> {{ "$" + post.price }}  </span>
+                            </article> 
+                            <article id = "food_description"> 
+                            <span id = "rest-name-description"> {{rest_name}} </span>
+                            {{ post.description }}
+                            </article>
                         </div>
                 </div> 
                 <div class = "clear"></div>
@@ -40,6 +45,7 @@ export default {
             can_add_post: false,
             empty_heart: emptyheart,
             empty_saved: emptysaved,
+            rest_name: ""
         }
     },
     created() {
@@ -61,6 +67,7 @@ export default {
         doc => {
             let restaurant = doc.data();
             restaurant.id = doc.id;
+            this.rest_name = restaurant.name;
             this.restaurants.push(restaurant);
         });
     
@@ -78,6 +85,11 @@ export default {
     methods: {
     },
     computed: {
+        showRestaurants: function () {
+            return this.restaurants.filter((restaurant) => {
+                return restaurant.name.match(this.search); 
+            }) 
+        }
     },
     mixins: [searchMixin]
 }
@@ -144,22 +156,19 @@ export default {
 
     .post_info {
         margin-top: 40px;
+        text-align: left;  
+        margin-left: 10px;      
     }
 
     #food_name {
+    }
+
+    #rest-name-description{
         font-weight: bold;
-        float: left;
-        margin-left: 10px;
     }
 
-    #food_price {
-        float: right;
-        margin-right: 460px;
-    }
-
-    #food_description {
-        float: left;
-        margin-left: 10px;
+    #food_description::before {
+        content: "\A";
     }
 
     .clear {
