@@ -6,8 +6,10 @@ export default {
         })
     },
         filterRestaurants: function () {
-            return this.restaurants.filter(restaurant => {
-                return restaurant.name.match(this.search); 
+            return this.restaurants.filter((restaurant,_index) => {
+                console.log(_index)
+                if (_index < this.limit) 
+                    return restaurant.name.match(this.search); 
         }) 
     },
         filterPosts: function() {
