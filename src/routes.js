@@ -14,5 +14,4 @@ export default [
     { path: '/Restaurants/:id/addRestaurantposts', component: addRestaurantPosts},
     { path: '/Accounts/sign-in', component: signIn, name: 'SignIn'},
     { path: '/Accounts/sign-up', component: signUp}
-
 ]
