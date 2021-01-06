@@ -22,6 +22,7 @@ firebase.initializeApp(firebaseConfig);
 // intializes firebase storage 
 const storage = firebase.storage(); 
 
+// exports firebase storage and firebase as default command
 export { storage, firebase as default }
 
 

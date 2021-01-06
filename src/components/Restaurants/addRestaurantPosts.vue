@@ -81,7 +81,8 @@ export default {
            this.r_post.picture = this.imageData;
 
            if (this.r_post.food && this.r_post.price && this.r_post.description && this.imageData) {
-
+            
+            // creates storage reference
             var storageRef = firebase.storage().ref();
             var metadata = {
                 contentType: 'image/jpeg'
