@@ -45,6 +45,7 @@ import emptyheart from '../../components/photos/empty_heart.png'
 import emptysaved from '../../components/photos/empty_saved.png'
 import searchMixin from '../../mixins/searchMixin'
 import firebase from '../../firebase/init'
+
 export default {
     name: 'singleRestaurant',
     data() {
@@ -57,11 +58,16 @@ export default {
             empty_saved: emptysaved,
             rest_name: "",
 
-
             comments:[],
+
+            username: "",
             comment: "",
+            photo: "",
+
             user: {
-                comment: ""
+                username: "",
+                comment: "",
+                photo: "",
             }
 
         }
@@ -69,18 +75,20 @@ export default {
     created() {
 
         var db = firebase.firestore();
-        var owner_ID = firebase.auth().currentUser.uid;
-        db.collection('restaurants').where("owner_ID", "==", owner_ID).get().then(
+        var user_uid = firebase.auth().currentUser.uid;
+
+        db.collection('restaurants').where("owner_ID", "==", user_uid).get().then(
             snapshot => {
                 snapshot.forEach( doc => {
                 let restaurant = doc.data();
                 restaurant.id = doc.id;
-                if (restaurant.owner_ID == owner_ID) {
+                if (restaurant.owner_ID == user_uid) {
                     this.can_add_post= true;
                 }
             });
         });
 
+        //get restaurant name
         db.collection('restaurants').doc(this.id).get().then(
         doc => {
             let restaurant = doc.data();
@@ -88,7 +96,9 @@ export default {
             this.rest_name = restaurant.name;
             this.restaurants.push(restaurant);
         });
-    
+
+
+        // get posts for restaurant
         db.collection('restaurants').doc(this.id).collection('posts').get().then(
             snapshot => {
                 snapshot.forEach( doc => {
@@ -98,11 +108,52 @@ export default {
                 });
           });
 
+        db.collection('users').where("user_id", "==", user_uid).get().then(
+           snapshot => {
+                snapshot.forEach( doc => {
+                let user = doc.data();
+                user.id = doc.id;
+                this.user.username = user.id;
+            });
+        });
+
     },
 
     methods: {
+
+        comment_post: function() {
+            
+            // finds used id 
+            var user_uid = firebase.auth().currentUser.uid;
+            
+            //intialize db 
+            var db = firebase.firestore()
+
+            // User comment 
+            this.user.comment = this.comment;
+            
+            // saves user comment id
+            var comment_id = db.collection("users").where("user_id", "==", user_uid).collection("comments_on_restaurants").id
+
+            // saves current time stamp **possibly change method of time later
+            var date = Date.now()
+
+            db.collection("users").where("user_id", "==", user_uid).collection("comments_on_restaurants").doc(comment_id).set({
+                restaurant_id: this.id,
+                restaurant_name: this.rest_name,
+                comment: this.user.comment,
+                date_of_comment: date
+            })
+
+            db.collection("restaurants").doc(this.id).collection("comments").doc(comment_id).set({
+
+            })
+
+        }
+
     },
     computed: {
+        // a seperate show restaurant computed function specific to this one restaurant 
         showRestaurants: function () {
             return this.restaurants.filter((restaurant) => {
                 return restaurant.name.match(this.search); 
