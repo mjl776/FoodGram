@@ -1,8 +1,9 @@
 export default {
     computed: {
         filterComments: function() {
-            return this.comments.filter(comment => {
-                return comment.username.match(this.search); 
+            return this.comments.filter((comment,_index) => {
+                if (_index < this.limit) 
+                    return comment.username.match(this.search); 
         })
     },
         filterRestaurants: function () {
@@ -13,7 +14,7 @@ export default {
         }) 
     },
         filterPosts: function() {
-            return this.post.filter(post=> {
+            return this.post.filter(post => {
                 return post.food.match(this.search)
             }) 
         }
