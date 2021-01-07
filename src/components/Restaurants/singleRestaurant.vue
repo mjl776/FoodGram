@@ -2,7 +2,7 @@
     <div class = "container">
         <div class = "single-restaurant"> 
             <li v-if = "can_add_post"><button class = "add-post-button"> <router-link tag = a v-bind:to = "'/restaurants/' + this.id  +'/addRestaurantposts'"> Add Post </router-link> </button> </li>
-            <div v-for = "post in filterPosts" :key="post.id" class = "post-border"> 
+            <div v-for = "(post,index) in filterPosts" :key="post.id" class = "post-border"> 
                 <div class = "post">
                     <header class = "post-header" v-for = "restaurants in showRestaurants" :key="restaurants.id">
                        <img :src = "restaurants.profile_photo" id = "prof_image" />
@@ -20,6 +20,7 @@
                             <span id = "rest-name-description"> {{rest_name}} </span>
                             {{ post.description }}
                             </article>
+
                         </div>
                         <div class = "comments-section"> 
                             <div class = "comments-section-header"> Comments Section </div>
@@ -27,8 +28,8 @@
                                 
                             </div>
                             <div class = "add-comment"> 
-                                <input class = "add-commment-box" v-model="comment" placeholder="Add a comment..">
-                                <button class = "add-comment-button" @click="comment_post">Post</button>
+                                <input class = "add-commment-box" v-model="comment[index]" placeholder="Add a comment..">
+                                <button class = "add-comment-button" @click="comment_post(post.food,index)">Post</button>
                             </div>
                         </div>
                 </div> 
@@ -60,19 +61,23 @@ export default {
             comments:[],
 
             username: "",
-            comment: "",
+
+            comment: [],
+
             photo: "",
 
             user: {
                 username: "",
-                comment: "",
+                comment:[],
                 photo: "",
-            }
+            },
+
+            limit: 2,
 
         }
     },
     created() {
-
+        
         var db = firebase.firestore();
         var user_uid = firebase.auth().currentUser.uid;
 
@@ -96,7 +101,6 @@ export default {
             this.restaurants.push(restaurant);
         });
 
-
         // get posts for restaurant
         db.collection('restaurants').doc(this.id).collection('posts').get().then(
             snapshot => {
@@ -105,7 +109,9 @@ export default {
                     post.id = doc.id;
                     this.post.push(post);
                 });
-          });
+        });
+
+        
 
         db.collection('users').where("user_id", "==", user_uid).get().then(
            snapshot => {
@@ -116,36 +122,39 @@ export default {
             });
         });
 
+
+
     },
 
     methods: {
 
-        comment_post: function() {
-            
-            // finds used id 
-            var user_uid = firebase.auth().currentUser.uid;
+        comment_post(post_food,index) {
             
             //intialize db 
             var db = firebase.firestore()
 
             // User comment 
-            this.user.comment = this.comment;
+            this.user.comment[index] = this.comment[index];
             
             // saves user comment id
-            var comment_id = db.collection("users").where("user_id", "==", user_uid).collection("comments_on_restaurants").id
-
+            var comment_id = db.collection("users").doc(this.user.username).collection("comments_on_restaurants").doc().id
+            console.log(comment_id)
             // saves current time stamp **possibly change method of time later
             var date = Date.now()
 
-            db.collection("users").where("user_id", "==", user_uid).collection("comments_on_restaurants").doc(comment_id).set({
+            db.collection("users").doc(this.user.username).collection("comments_on_restaurants").doc(comment_id).set({
                 restaurant_id: this.id,
                 restaurant_name: this.rest_name,
-                comment: this.user.comment,
+                comment: this.user.comment[index],
                 date_of_comment: date
-            })
-
-            db.collection("restaurants").doc(this.id).collection("comments").doc(comment_id).set({
-
+            }) 
+            
+            db.collection("restaurants").doc(this.id).collection('posts').doc(post_food).collection("comments").doc(comment_id).set({
+                username: this.user.username,
+                comment: this.user.comment[index],
+                data_of_comment: date
+            }).then(()=> {
+                
             })
 
         }

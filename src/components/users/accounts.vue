@@ -30,7 +30,6 @@ export default {
     },
     created(){
         this.email = firebase.auth().currentUser.email;
-
         var db = firebase.firestore();
         db.collection('users').doc(this.id).get().then(doc => {
             let user = doc.data();
