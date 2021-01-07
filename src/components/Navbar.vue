@@ -4,9 +4,10 @@
         <ul>
             <li> <router-link tag = "a" to = "/"> Explorer Page</router-link></li>
             <li><router-link tag = "a" to = "/Restaurants"> Restaurants </router-link> </li>
-            <li> <router-link tag = "a" to = "/Accounts/sign-in"> Sign in </router-link> </li>
-            <li> <a tag = "a" @click= "logout"> Sign Out </a> </li>
-            <input type = "text" class = "text-box" placeholder ="Search Restaurants..."/>            
+            <li v-if="!user"> <router-link tag = "a" to = "/Accounts/sign-in"> Sign in </router-link> </li>
+            <li v-if="user"> <router-link tag = "a" v-bind:to = "'/Accounts/' + this.username"> {{ username }} </router-link> </li>
+            <li v-if="user"> <a tag = "a" @click= "logout"> Sign Out </a> </li>
+            <input type = "text" class = "text-box" placeholder = "Search Restaurants..."/>            
         </ul>
         </nav>
     </div>
@@ -18,9 +19,33 @@ export default {
     name: 'Navbar',
     data() {
         return {
-
+            user: null,
+            username: null
         }
     }, 
+    created(){
+        
+        // checks sign in
+        firebase.auth().onAuthStateChanged((user)=>{
+            if(user) {
+                //user uid 
+                this.user = firebase.auth().currentUser.uid;
+                // account username display
+                var db = firebase.firestore();
+                db.collection('users').where("user_id", "==", this.user).get().then(snapshot => {
+                    snapshot.forEach(doc => {
+                        let user= doc.data();
+                        user.id = doc.id;
+                        this.username = user.id;
+                    });
+                });
+            }
+            else {
+                this.user=null;
+            }
+        })
+
+    },
     methods: {
         logout() {
             firebase.auth().signOut().then(()=> {
