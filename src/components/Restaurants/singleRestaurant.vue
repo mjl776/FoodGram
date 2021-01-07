@@ -1,6 +1,5 @@
 <template>
     <div class = "container">
-        
         <div class = "single-restaurant"> 
             <li v-if = "can_add_post"><button class = "add-post-button"> <router-link tag = a v-bind:to = "'/restaurants/' + this.id  +'/addRestaurantposts'"> Add Post </router-link> </button> </li>
             <div v-for = "post in filterPosts" :key="post.id" class = "post-border"> 
