@@ -1,6 +1,7 @@
 <template>
 <body>
     <img alt="FoodGram Logo" class = "logo" src="./assets/logo.png"/>
+    
     <div id="app">
       <header class = "navbar">
           <Navbar/>

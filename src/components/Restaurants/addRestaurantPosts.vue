@@ -35,9 +35,7 @@ export default {
     data () {
         return {
             id: this.$route.params.id,
-
-            restaurant_name: "",
-
+            
             food: "",
             price: "",
             description: "",
@@ -56,13 +54,6 @@ export default {
     },
 
     created() {
-        var db = firebase.firestore();
-        db.collection('restaurants').doc(this.id).get().then(
-        doc => {
-            let restaurant = doc.data();
-            restaurant.id = doc.id;
-            this.restaurant_name = restaurant.name;
-        });
     },
  
     methods: {
@@ -131,13 +122,14 @@ export default {
                                 console.log('File available at', downloadURL);
                                 this.r_post.picture = this.picture;
                                 //posts when photo is done uploading
-                                db.collection('restaurants').doc(this.id).collection("posts").doc(this.r_post.food).set({
+                                db.collection("posts").doc(this.r_post.food).set({
+                                    rest_id: this.id,
                                     food: this.r_post.food,
                                     price: this.r_post.price,
                                     description: this.r_post.description,
-                                    picture_URL: this.r_post.picture
+                                    picture_URL: this.r_post.picture,
                                 }).catch(err => {
-                                        console.log(err)
+                                    console.log(err)
                                 })
                         });
                     });
