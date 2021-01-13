@@ -4,9 +4,9 @@
             <li v-if = "can_add_post"><button class = "add-post-button"> <router-link tag = a v-bind:to = "'/restaurants/' + this.id  +'/addRestaurantposts'"> Add Post </router-link> </button> </li>
             <div v-for = "(post,index) in filterPosts" :key="post.id" class = "post-border"> 
                 <div class = "post">
-                    <header class = "post-header" v-for = "restaurants in showRestaurants" :key="restaurants.id">
-                       <img :src = "restaurants.profile_photo" id = "prof_image" />
-                       <article id = "rest-name"> {{ restaurants.name }} </article>
+                    <header class = "post-header">
+                       <img :src = "rest_profile_photo" id = "prof_image" />
+                       <article id = "rest-name"> {{ rest_name }} </article>
                     </header>
                             <img :src= "post.picture_URL" id = "post_pic"/>
                             <img :src= "empty_heart" id = "empty_heart_pic"/>
@@ -24,12 +24,15 @@
                         </div>
                         <div class = "comments-section"> 
                             <div class = "comments-section-header"> Comments Section </div>
-                            <div class = "comments-section"> 
-                                
+                            <div class = "comments-section-show"> 
+                                <article id = "comment_indivual">
+                                     <span id = "comment_user"> {{ comments.user }} </span>
+                                     {{ comments.comment }}
+                                </article>
                             </div>
                             <div class = "add-comment"> 
                                 <input class = "add-commment-box" v-model="comment[index]" placeholder="Add a comment..">
-                                <button class = "add-comment-button" @click="comment_post(post.food,index)">Post</button>
+                                <button class = "add-comment-button" @click="comment_post(post.food, post.rest_id, index)">Post</button>
                             </div>
                         </div>
                 </div> 
@@ -52,11 +55,12 @@ export default {
         return {
             id: this.$route.params.id,
             post: [],
-            restaurants: [],
             can_add_post: false,
             empty_heart: emptyheart,
             empty_saved: emptysaved,
+
             rest_name: "",
+            rest_profile_photo: "",
 
             comments:[],
 
@@ -81,38 +85,19 @@ export default {
         var db = firebase.firestore();
         var user_uid = firebase.auth().currentUser.uid;
 
-        db.collection('restaurants').where("owner_ID", "==", user_uid).get().then(
-            snapshot => {
-                snapshot.forEach( doc => {
-                let restaurant = doc.data();
-                restaurant.id = doc.id;
-                if (restaurant.owner_ID == user_uid) {
-                    this.can_add_post= true;
-                }
-            });
-        });
-
-        //get restaurant name
-        db.collection('restaurants').doc(this.id).get().then(
-        doc => {
+        //check if person is owner of restaurant
+        db.collection('restaurants').doc(this.id).get().then(doc => {
             let restaurant = doc.data();
-            restaurant.id = doc.id;
+            restaurant.id = doc.id; 
             this.rest_name = restaurant.name;
-            this.restaurants.push(restaurant);
+            this.rest_profile_photo = restaurant.profile_photo;
+
+            if (restaurant.owner_ID == user_uid) {
+                this.can_add_post=true;
+            }
         });
 
-        // get posts for restaurant
-        db.collection('restaurants').doc(this.id).collection('posts').get().then(
-            snapshot => {
-                snapshot.forEach( doc => {
-                    let post = doc.data();
-                    post.id = doc.id;
-                    this.post.push(post);
-                });
-        });
-
-        
-
+        // find user username 
         db.collection('users').where("user_id", "==", user_uid).get().then(
            snapshot => {
                 snapshot.forEach( doc => {
@@ -121,41 +106,38 @@ export default {
                 this.user.username = user.id;
             });
         });
+    
+        // first, get all posts and foods of restaurants, then get a temporary array of all the comments from posts
+        db.collection('posts').where("rest_id", "==", this.id).get().then(
+            snapshot => {
+                snapshot.forEach( doc => {
+                    let post = doc.data();
+                    post.id = doc.id;
+                    this.post.push(post);
+                });
+        });
 
 
+    },
+    mounted() {
 
     },
 
     methods: {
+        comment_post(post_food, id, index) {
+            var db = firebase.firestore();
 
-        comment_post(post_food,index) {
-            
-            //intialize db 
-            var db = firebase.firestore()
+            this.user.comment = this.comment[index];
 
-            // User comment 
-            this.user.comment[index] = this.comment[index];
-            
-            // saves user comment id
-            var comment_id = db.collection("users").doc(this.user.username).collection("comments_on_restaurants").doc().id
-            console.log(comment_id)
-            // saves current time stamp **possibly change method of time later
-            var date = Date.now()
+            var comment_id = db.collection("posts").doc(post_food).collection("comments").doc().id;
 
-            db.collection("users").doc(this.user.username).collection("comments_on_restaurants").doc(comment_id).set({
-                restaurant_id: this.id,
-                restaurant_name: this.rest_name,
-                comment: this.user.comment[index],
-                date_of_comment: date
-            }) 
-            
-            db.collection("restaurants").doc(this.id).collection('posts').doc(post_food).collection("comments").doc(comment_id).set({
-                username: this.user.username,
-                comment: this.user.comment[index],
-                data_of_comment: date
-            }).then(()=> {
-                
-            })
+             db.collection("posts").doc(post_food).collection("comments").doc(comment_id).set({
+                user: this.user.username,
+                food: post_food,
+                rest_id: id,
+                comment: this.user.comment,
+                date: Date.now()
+            });
 
         }
 
