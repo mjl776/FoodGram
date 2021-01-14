@@ -24,7 +24,7 @@
                         </div>
                         <div class = "comments-section"> 
                             <div class = "comments-section-header"> Comments Section </div>
-                            <div class = "comments-section-show"> 
+                            <div class = "comments-section-show" v-for= "comments in limitComments(index, limit)" :key="comments.id"> 
                                 <article id = "comment_indivual">
                                      <span id = "comment_user"> {{ comments.user }} </span>
                                      {{ comments.comment }}
@@ -62,10 +62,7 @@ export default {
             rest_name: "",
             rest_profile_photo: "",
 
-            comments:[],
-
             username: "",
-
             comment: [],
 
             photo: "",
@@ -139,6 +136,12 @@ export default {
                 date: Date.now()
             });
 
+        },
+
+        limitComments(index,limit) {
+            if(this.post[index].recentComments) {
+                return this.post[index].recentComments.slice(0,limit);
+            }
         }
 
     },
@@ -148,7 +151,9 @@ export default {
             return this.restaurants.filter((restaurant) => {
                 return restaurant.name.match(this.search); 
             }) 
-        }
+        },
+
+     
     },
     mixins: [searchMixin]
 }
@@ -288,6 +293,9 @@ export default {
     .add-comment-button {
         background-color: skyblue;
         height: 36px;
+    }
+    #comment_user {
+        font-weight: bold;
     }
 
 </style>
