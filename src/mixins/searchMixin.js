@@ -1,10 +1,11 @@
 export default {
     computed: {
-        filterComments: function() {
-            return this.comments.filter((comment) => {
-                return comment;
+/*         filterComments: function() {
+            return this.post[_index].recentComments.filter((comment) => {
+                return comment.comment.match(this.search)
             });
-    },
+        }, */
+
         filterRestaurants: function () {
             return this.restaurants.filter((restaurant,_index) => {
                 console.log(_index)
