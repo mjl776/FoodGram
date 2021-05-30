@@ -76,6 +76,7 @@ export default {
     border: 1px solid black;
     background-color: white;
     padding: 5px;
+    height: 310px;
 }
 
 .restaurant {
@@ -85,7 +86,7 @@ export default {
 .prof_pic {
    width: 300px;
    float: left;
-   height: 300px;
+   height: 310px;
 }   
 
 .rest-text {
@@ -119,7 +120,6 @@ a:hover {
     font-size: 15px;
     display: inline-block;
     padding: 5px;
-
 }    
 
 .add-rest-button {
